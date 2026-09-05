@@ -1,0 +1,3585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Resume Builder</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:linear-gradient(135deg,#eef2ff,#f8fafc,#ecfeff);
+    color:#172033;
+    min-height:100vh;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    width:100%;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed,#06b6d4);
+    color:white;
+    padding:18px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 8px 25px rgba(79,70,229,.25);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:.5px;
+}
+
+.logo span{
+    color:#a5f3fc;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+    width:94%;
+    max-width:1200px;
+    margin:35px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:42px;
+    font-weight:800;
+    background:linear-gradient(90deg,#4f46e5,#7c3aed,#06b6d4);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#64748b;
+    font-size:17px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+    background:rgba(255,255,255,.96);
+    border:1px solid rgba(148,163,184,.2);
+    border-radius:18px;
+    margin-bottom:20px;
+    overflow:hidden;
+    box-shadow:0 12px 35px rgba(15,23,42,.08);
+    transition:.3s;
+}
+
+.section:hover{
+    transform:translateY(-2px);
+    box-shadow:0 18px 45px rgba(15,23,42,.12);
+}
+
+.section-header{
+    padding:19px 22px;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.arrow{
+    transition:.3s;
+}
+
+.section-content{
+    padding:25px;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+label{
+    display:block;
+    font-weight:700;
+    color:#334155;
+    margin:15px 0 7px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    border:1px solid #dbe2ea;
+    background:#f8fafc;
+    padding:13px 14px;
+    border-radius:10px;
+    font-size:15px;
+    color:#172033;
+    transition:.25s;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    outline:none;
+    border-color:#6366f1;
+    background:white;
+    box-shadow:0 0 0 4px rgba(99,102,241,.1);
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+/* =========================
+   PROJECT / CERTIFICATE BOX
+========================= */
+
+.project-box,
+.certificate-box{
+    background:linear-gradient(135deg,#f8fafc,#eef2ff);
+    border:1px solid #dbe3f0;
+    border-radius:15px;
+    padding:22px;
+    margin-bottom:20px;
+}
+
+.project-box h3,
+.certificate-box h3{
+    color:#4f46e5;
+    margin-bottom:10px;
+    font-size:19px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.add-btn,
+.remove-btn,
+.generate-btn,
+.print-btn{
+    border:none;
+    border-radius:10px;
+    padding:13px 20px;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.add-btn{
+    background:#10b981;
+    color:white;
+}
+
+.add-btn:hover{
+    background:#059669;
+    transform:translateY(-2px);
+}
+
+.remove-btn{
+    background:#fee2e2;
+    color:#dc2626;
+    margin-top:10px;
+}
+
+.remove-btn:hover{
+    background:#fecaca;
+}
+
+.main-buttons{
+    text-align:center;
+    margin:35px 0;
+}
+
+.generate-btn{
+    color:white;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    padding:16px 30px;
+    font-size:17px;
+    box-shadow:0 10px 25px rgba(79,70,229,.25);
+}
+
+.generate-btn:hover{
+    transform:translateY(-3px);
+}
+
+.print-btn{
+    color:white;
+    background:#0f172a;
+    padding:16px 30px;
+    font-size:17px;
+    margin-left:10px;
+}
+
+.print-btn:hover{
+    background:#1e293b;
+    transform:translateY(-3px);
+}
+
+/* =========================
+   RESUME
+========================= */
+
+#resumePreview{
+    display:none;
+    width:100%;
+    max-width:900px;
+    margin:40px auto;
+    background:white;
+    box-shadow:0 20px 60px rgba(15,23,42,.18);
+    border-radius:8px;
+    overflow:hidden;
+}
+
+/* RESUME HEADER */
+
+.resume-top{
+    background:linear-gradient(135deg,#312e81,#4f46e5,#06b6d4);
+    color:white;
+    padding:42px;
+    display:flex;
+    gap:28px;
+    align-items:center;
+}
+
+.preview-photo{
+    width:135px;
+    height:135px;
+    border-radius:25px;
+    object-fit:cover;
+    border:5px solid rgba(255,255,255,.8);
+    display:none;
+    background:white;
+}
+
+.resume-name{
+    font-size:36px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.resume-title{
+    font-size:17px;
+    opacity:.9;
+    margin-bottom:12px;
+}
+
+.resume-contact{
+    line-height:1.8;
+    font-size:14px;
+}
+
+.resume-contact a{
+    color:white;
+}
+
+/* RESUME BODY */
+
+.resume-body{
+    padding:38px 45px;
+}
+
+.resume-section{
+    margin-bottom:27px;
+}
+
+.resume-section h2{
+    color:#4f46e5;
+    font-size:20px;
+    border-left:5px solid #06b6d4;
+    padding-left:12px;
+    margin-bottom:15px;
+}
+
+.resume-section p{
+    line-height:1.7;
+    color:#475569;
+}
+
+.resume-item{
+    margin-bottom:20px;
+    padding-bottom:15px;
+    border-bottom:1px solid #e2e8f0;
+}
+
+.resume-item:last-child{
+    border-bottom:none;
+}
+
+.resume-item h3{
+    color:#172033;
+    margin-bottom:6px;
+}
+
+.resume-item strong{
+    color:#334155;
+}
+
+.resume-item a{
+    color:#4f46e5;
+    word-break:break-word;
+}
+
+/* TAGS */
+
+.skill-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.skill-tag{
+    padding:7px 12px;
+    background:#eef2ff;
+    color:#4f46e5;
+    border-radius:20px;
+    font-weight:600;
+    font-size:13px;
+}
+
+/* CERTIFICATE */
+
+.certificate-preview{
+    max-width:100%;
+    max-height:420px;
+    margin-top:12px;
+    border-radius:8px;
+    border:1px solid #dbe2ea;
+}
+
+.pdf-box{
+    background:#f1f5f9;
+    border-radius:8px;
+    padding:13px;
+    margin-top:10px;
+    color:#475569;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    color:#64748b;
+    padding:25px;
+    font-size:14px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    .hero h1{
+        font-size:31px;
+    }
+
+    .hero p{
+        font-size:14px;
+    }
+
+    .row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .section-content{
+        padding:18px;
+    }
+
+    .resume-top{
+        flex-direction:column;
+        text-align:center;
+        padding:30px 20px;
+    }
+
+    .resume-name{
+        font-size:28px;
+    }
+
+    .resume-body{
+        padding:25px 20px;
+    }
+
+    .print-btn{
+        margin-left:0;
+        margin-top:10px;
+    }
+
+}
+
+/* =========================
+   PRINT
+========================= */
+
+@media print{
+
+    body{
+        background:white;
+    }
+
+    .navbar,
+    .container,
+    .footer{
+        display:none !important;
+    }
+
+    #resumePreview{
+        display:block !important;
+        max-width:none;
+        width:100%;
+        margin:0;
+        box-shadow:none;
+        border-radius:0;
+    }
+
+    .resume-top{
+        -webkit-print-color-adjust:exact;
+        print-color-adjust:exact;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Resume<span>Craft</span>
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+<!-- HERO -->
+
+<div class="hero">
+
+    <h1>Resume Builder</h1>
+
+    <p>
+        Build a modern and professional resume in minutes.
+    </p>
+
+</div>
+
+
+<!-- =========================
+     BASIC DETAILS
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+    <span>👤 Basic Details</span>
+    <span class="arrow">▼</span>
+</div>
+
+<div class="section-content">
+
+<label>Full Name *</label>
+
+<input
+    type="text"
+    id="fullName"
+    placeholder="Enter your full name"
+>
+
+
+<label>Profile Photo (Optional)</label>
+
+<input
+    type="file"
+    id="profilePhoto"
+    accept="image/*"
+>
+
+
+<div class="row">
+
+<div>
+
+<label>Date of Birth (Optional)</label>
+
+<input
+    type="date"
+    id="dob"
+>
+
+</div>
+
+
+<div>
+
+<label>Gender (Optional)</label>
+
+<select id="gender">
+
+<option value="">Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<label>Career Objective</label>
+
+<textarea
+    id="objective"
+    placeholder="Write a short and professional career objective..."
+></textarea>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+
+<span>📞 Contact Details</span>
+
+<span class="arrow">▼</span>
+
+</div>
+
+
+<div class="section-content">
+
+<div class="row">
+
+<div>
+
+<label>Email *</label>
+
+<input
+    type="email"
+    id="email"
+    placeholder="example@gmail.com"
+>
+
+</div>
+
+
+<div>
+
+<label>Mobile Number *</label>
+
+<input
+    type="tel"
+    id="phone"
+    placeholder="+91 9876543210"
+>
+
+</div>
+
+</div>
+
+
+<label>Address</label>
+
+<textarea
+    id="address"
+    placeholder="Enter your address"
+></textarea>
+
+
+<div class="row">
+
+<div>
+
+<label>LinkedIn (Optional)</label>
+
+<input
+    type="text"
+    id="linkedin"
+    placeholder="linkedin.com/in/username"
+>
+
+</div>
+
+
+<div>
+
+<label>GitHub (Optional)</label>
+
+<input
+    type="text"
+    id="github"
+    placeholder="github.com/username"
+>
+
+</div>
+
+</div>
+
+
+<label>Portfolio Website (Optional)</label>
+
+<input
+    type="text"
+    id="portfolio"
+    placeholder="https://example.com"
+>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     EDUCATION
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+
+<span>🎓 Education</span>
+
+<span class="arrow">▼</span>
+
+</div>
+
+
+<div class="section-content">
+
+<label>Highest Qualification</label>
+
+<input
+    type="text"
+    id="qualification"
+    placeholder="Example: T.Y. B.Sc. Computer Science"
+>
+
+
+<label>College / University</label>
+
+<input
+    type="text"
+    id="college"
+    placeholder="Enter college or university"
+>
+
+
+<label>School</label>
+
+<input
+    type="text"
+    id="school"
+    placeholder="Enter school name"
+>
+
+
+<div class="row">
+
+<div>
+
+<label>Passing Year</label>
+
+<input
+    type="text"
+    id="passingYear"
+    placeholder="2026"
+>
+
+</div>
+
+
+<div>
+
+<label>Percentage / CGPA</label>
+
+<input
+    type="text"
+    id="percentage"
+    placeholder="75% / 8.2 CGPA"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     EDUCATIONAL CERTIFICATES
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+
+<span>📜 Educational Certificates</span>
+
+<span class="arrow">▼</span>
+
+</div>
+
+
+<div class="section-content">
+
+<label>10th Certificate (Optional)</label>
+
+<input
+    type="file"
+    id="certificate10"
+    accept="image/*,.pdf"
+>
+
+
+<label>12th Certificate (Optional)</label>
+
+<input
+    type="file"
+    id="certificate12"
+    accept="image/*,.pdf"
+>
+
+
+<label>Degree Certificate (Optional)</label>
+
+<input
+    type="file"
+    id="degreeCertificate"
+    accept="image/*,.pdf"
+>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+
+<span>💻 Skills, Languages & Interests</span>
+
+<span class="arrow">▼</span>
+
+</div>
+
+
+<div class="section-content">
+
+<label>Technical Skills</label>
+
+<input
+    type="text"
+    id="skills"
+    placeholder="C++, Python, HTML, SQL, Excel"
+>
+
+
+<label>Languages Known</label>
+
+<input
+    type="text"
+    id="languages"
+    placeholder="English, Hindi, Marathi"
+>
+
+
+<label>Hobbies (Optional)</label>
+
+<input
+    type="text"
+    id="hobbies"
+    placeholder="Reading, Cricket, Music"
+>
+
+
+<label>Interests (Optional)</label>
+
+<input
+    type="text"
+    id="interests"
+    placeholder="Web Development, AI, Data Science"
+>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     FAMILY
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+
+<span>👨‍👩‍👦 Family Details</span>
+
+<span class="arrow">▼</span>
+
+</div>
+
+
+<div class="section-content">
+
+<label>Father's Name (Optional)</label>
+
+<input
+    type="text"
+    id="fatherName"
+>
+
+
+<label>Mother's Name (Optional)</label>
+
+<input
+    type="text"
+    id="motherName"
+>
+
+
+<label>Family Information (Optional)</label>
+
+<textarea
+    id="familyInfo"
+></textarea>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     EXPERIENCE
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+
+<span>💼 Professional Experience</span>
+
+<span class="arrow">▼</span>
+
+</div>
+
+
+<div class="section-content">
+
+<label>Company Name</label>
+
+<input
+    type="text"
+    id="company"
+    placeholder="Company name"
+>
+
+
+<label>Job Position</label>
+
+<input
+    type="text"
+    id="jobPosition"
+    placeholder="Junior Developer"
+>
+
+
+<label>Experience Details</label>
+
+<textarea
+    id="experienceDetails"
+    placeholder="Describe your responsibilities..."
+></textarea>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     INTERNSHIP
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+
+<span>🧑‍💻 Internship</span>
+
+<span class="arrow">▼</span>
+
+</div>
+
+
+<div class="section-content">
+
+<label>Organization</label>
+
+<input
+    type="text"
+    id="internOrganization"
+>
+
+
+<label>Internship Role</label>
+
+<input
+    type="text"
+    id="internRole"
+>
+
+
+<label>Internship Details</label>
+
+<textarea
+    id="internDetails"
+></textarea>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     PROJECTS
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+
+<span>🚀 Projects</span>
+
+<span class="arrow">▼</span>
+
+</div>
+
+
+<div class="section-content">
+
+<div id="projectsContainer">
+
+
+<div class="project-box">
+
+<h3>Project 1</h3>
+
+
+<label>Project Name</label>
+
+<input
+    type="text"
+    class="project-name"
+    placeholder="Student Result Management System"
+>
+
+
+<label>Project Description</label>
+
+<textarea
+    class="project-description"
+    placeholder="Explain your project..."
+></textarea>
+
+
+<label>Technologies Used</label>
+
+<input
+    type="text"
+    class="project-technologies"
+    placeholder="HTML, CSS, JavaScript, Python, SQL"
+>
+
+
+<label>Project Duration</label>
+
+<input
+    type="text"
+    class="project-duration"
+    placeholder="3 Months"
+>
+
+
+<label>Your Role</label>
+
+<input
+    type="text"
+    class="project-role"
+    placeholder="Developer / Team Leader"
+>
+
+
+<label>Project Link (Optional)</label>
+
+<input
+    type="text"
+    class="project-link"
+    placeholder="https://example.com"
+>
+
+
+<label>GitHub Link (Optional)</label>
+
+<input
+    type="text"
+    class="project-github"
+    placeholder="https://github.com/username/project"
+>
+
+
+<label>Project Certificate / Image (Optional)</label>
+
+<input
+    type="file"
+    class="project-certificate"
+    accept="image/*,.pdf"
+>
+
+
+<button
+    type="button"
+    class="remove-btn"
+    onclick="removeProject(this)"
+>
+Remove Project
+</button>
+
+</div>
+
+</div>
+
+
+<button
+    type="button"
+    class="add-btn"
+    onclick="addProject()"
+>
++ Add Another Project
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     PUBLICATIONS
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+
+<span>📚 Publications / Research / White Papers</span>
+
+<span class="arrow">▼</span>
+
+</div>
+
+
+<div class="section-content">
+
+<label>Publication / Research Title</label>
+
+<input
+    type="text"
+    id="publicationTitle"
+>
+
+
+<label>Details</label>
+
+<textarea
+    id="publicationDetails"
+></textarea>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     SEMINARS
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+
+<span>🎤 Seminars / Trainings / Workshops</span>
+
+<span class="arrow">▼</span>
+
+</div>
+
+
+<div class="section-content">
+
+<label>Name</label>
+
+<input
+    type="text"
+    id="seminarName"
+>
+
+
+<label>Details</label>
+
+<textarea
+    id="seminarDetails"
+></textarea>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     CERTIFICATIONS
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+
+<span>🏆 Certifications / Assessments</span>
+
+<span class="arrow">▼</span>
+
+</div>
+
+
+<div class="section-content">
+
+<div id="certificationsContainer">
+
+
+<div class="certificate-box">
+
+<h3>Certification 1</h3>
+
+
+<label>Certification Name</label>
+
+<input
+    type="text"
+    class="cert-name"
+    placeholder="Python Programming"
+>
+
+
+<label>Issuing Organization</label>
+
+<input
+    type="text"
+    class="cert-organization"
+    placeholder="Microsoft"
+>
+
+
+<label>Date / Year</label>
+
+<input
+    type="text"
+    class="cert-date"
+    placeholder="2026"
+>
+
+
+<label>Certification ID (Optional)</label>
+
+<input
+    type="text"
+    class="cert-id"
+>
+
+
+<label>Skills / Topics Covered</label>
+
+<input
+    type="text"
+    class="cert-skills"
+    placeholder="Python, SQL, Data Analysis"
+>
+
+
+<label>Certification Description</label>
+
+<textarea
+    class="cert-description"
+></textarea>
+
+
+<label>Certificate Link (Optional)</label>
+
+<input
+    type="text"
+    class="cert-link"
+    placeholder="https://example.com"
+>
+
+
+<label>Certificate Photo / PDF (Optional)</label>
+
+<input
+    type="file"
+    class="cert-photo"
+    accept="image/*,.pdf"
+>
+
+
+<button
+    type="button"
+    class="remove-btn"
+    onclick="removeCertification(this)"
+>
+Remove Certification
+</button>
+
+</div>
+
+</div>
+
+
+<button
+    type="button"
+    class="add-btn"
+    onclick="addCertification()"
+>
++ Add Another Certification
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     OTHER
+========================= -->
+
+<div class="section">
+
+<div class="section-header" onclick="toggleSection(this)">
+
+<span>🌟 Achievements & Other Details</span>
+
+<span class="arrow">▼</span>
+
+</div>
+
+
+<div class="section-content">
+
+<label>Achievements</label>
+
+<textarea
+    id="achievements"
+    placeholder="Enter your achievements..."
+></textarea>
+
+
+<label>Extra-Curricular Activities</label>
+
+<textarea
+    id="activities"
+></textarea>
+
+
+<label>Additional Information</label>
+
+<textarea
+    id="additional"
+></textarea>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     BUTTONS
+========================= -->
+
+<div class="main-buttons">
+
+<button
+    class="generate-btn"
+    onclick="generateResume()"
+>
+✨ Generate Resume
+</button>
+
+
+<button
+    class="print-btn"
+    onclick="printResume()"
+>
+🖨 Print / Save PDF
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     RESUME PREVIEW
+========================= -->
+
+<div id="resumePreview">
+
+
+<div class="resume-top">
+
+<img
+    id="previewPhoto"
+    class="preview-photo"
+>
+
+<div>
+
+<div
+    class="resume-name"
+    id="previewName"
+>
+Your Name
+</div>
+
+
+<div
+    class="resume-title"
+    id="previewQualificationTitle"
+></div>
+
+
+<div
+    class="resume-contact"
+    id="previewContact"
+></div>
+
+</div>
+
+</div>
+
+
+<div class="resume-body">
+
+
+<!-- OBJECTIVE -->
+
+<div
+    class="resume-section"
+    id="objectiveSection"
+>
+
+<h2>Career Objective</h2>
+
+<p id="previewObjective"></p>
+
+</div>
+
+
+<!-- EDUCATION -->
+
+<div class="resume-section">
+
+<h2>Education</h2>
+
+<div class="resume-item">
+
+<h3 id="previewQualification"></h3>
+
+<p id="previewCollege"></p>
+
+<p id="previewSchool"></p>
+
+<p id="previewEducationDetails"></p>
+
+</div>
+
+</div>
+
+
+<!-- SKILLS -->
+
+<div
+    class="resume-section"
+    id="skillsSection"
+    style="display:none"
+>
+
+<h2>Technical Skills</h2>
+
+<div
+    class="skill-list"
+    id="previewSkills"
+></div>
+
+</div>
+
+
+<!-- EXPERIENCE -->
+
+<div
+    class="resume-section"
+    id="experienceSection"
+    style="display:none"
+>
+
+<h2>Professional Experience</h2>
+
+<div class="resume-item">
+
+<h3 id="previewCompany"></h3>
+
+<p id="previewJobPosition"></p>
+
+<p id="previewExperience"></p>
+
+</div>
+
+</div>
+
+
+<!-- INTERNSHIP -->
+
+<div
+    class="resume-section"
+    id="internshipSection"
+    style="display:none"
+>
+
+<h2>Internship</h2>
+
+<div class="resume-item">
+
+<h3 id="previewInternOrganization"></h3>
+
+<p id="previewInternRole"></p>
+
+<p id="previewInternDetails"></p>
+
+</div>
+
+</div>
+
+
+<!-- PROJECTS -->
+
+<div
+    class="resume-section"
+    id="projectsPreviewSection"
+    style="display:none"
+>
+
+<h2>Projects</h2>
+
+<div id="projectsPreview"></div>
+
+</div>
+
+
+<!-- PUBLICATIONS -->
+
+<div
+    class="resume-section"
+    id="publicationSection"
+    style="display:none"
+>
+
+<h2>Publications / Research / White Papers</h2>
+
+<div class="resume-item">
+
+<h3 id="previewPublicationTitle"></h3>
+
+<p id="previewPublicationDetails"></p>
+
+</div>
+
+</div>
+
+
+<!-- SEMINARS -->
+
+<div
+    class="resume-section"
+    id="seminarSection"
+    style="display:none"
+>
+
+<h2>Seminars / Trainings / Workshops</h2>
+
+<div class="resume-item">
+
+<h3 id="previewSeminarName"></h3>
+
+<p id="previewSeminarDetails"></p>
+
+</div>
+
+</div>
+
+
+<!-- CERTIFICATIONS -->
+
+<div
+    class="resume-section"
+    id="certificationPreviewSection"
+    style="display:none"
+>
+
+<h2>Certifications / Assessments</h2>
+
+<div id="certificationsPreview"></div>
+
+</div>
+
+
+<!-- LANGUAGES -->
+
+<div
+    class="resume-section"
+    id="languagesSection"
+    style="display:none"
+>
+
+<h2>Languages</h2>
+
+<div
+    class="skill-list"
+    id="previewLanguages"
+></div>
+
+</div>
+
+
+<!-- HOBBIES -->
+
+<div
+    class="resume-section"
+    id="hobbiesSection"
+    style="display:none"
+>
+
+<h2>Hobbies</h2>
+
+<p id="previewHobbies"></p>
+
+</div>
+
+
+<!-- INTERESTS -->
+
+<div
+    class="resume-section"
+    id="interestsSection"
+    style="display:none"
+>
+
+<h2>Interests</h2>
+
+<p id="previewInterests"></p>
+
+</div>
+
+
+<!-- FAMILY -->
+
+<div
+    class="resume-section"
+    id="familySection"
+    style="display:none"
+>
+
+<h2>Family Details</h2>
+
+<p id="previewFather"></p>
+
+<p id="previewMother"></p>
+
+<p id="previewFamily"></p>
+
+</div>
+
+
+<!-- ACHIEVEMENTS -->
+
+<div
+    class="resume-section"
+    id="achievementsSection"
+    style="display:none"
+>
+
+<h2>Achievements</h2>
+
+<p id="previewAchievements"></p>
+
+</div>
+
+
+<!-- ACTIVITIES -->
+
+<div
+    class="resume-section"
+    id="activitiesSection"
+    style="display:none"
+>
+
+<h2>Extra-Curricular Activities</h2>
+
+<p id="previewActivities"></p>
+
+</div>
+
+
+<!-- ADDITIONAL -->
+
+<div
+    class="resume-section"
+    id="additionalSection"
+    style="display:none"
+>
+
+<h2>Additional Information</h2>
+
+<p id="previewAdditional"></p>
+
+</div>
+
+
+<!-- EDUCATIONAL CERTIFICATES -->
+
+<div
+    class="resume-section"
+    id="educationalCertificatesSection"
+    style="display:none"
+>
+
+<h2>Educational Certificates</h2>
+
+<div id="preview10"></div>
+
+<div id="preview12"></div>
+
+<div id="previewDegree"></div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="footer">
+Resume Builder
+</div>
+
+
+<script>
+
+/* =========================
+   TOGGLE
+========================= */
+
+function toggleSection(header){
+
+    const content =
+        header.nextElementSibling;
+
+    const arrow =
+        header.querySelector(".arrow");
+
+    if(content.style.display === "none"){
+
+        content.style.display = "block";
+
+        arrow.style.transform =
+            "rotate(0deg)";
+
+    }
+
+    else{
+
+        content.style.display = "none";
+
+        arrow.style.transform =
+            "rotate(-90deg)";
+
+    }
+
+}
+
+
+/* =========================
+   PROJECTS
+========================= */
+
+let projectCount = 1;
+
+
+function addProject(){
+
+    projectCount++;
+
+    const container =
+        document.getElementById(
+            "projectsContainer"
+        );
+
+
+    const box =
+        document.createElement("div");
+
+    box.className =
+        "project-box";
+
+
+    box.innerHTML = `
+
+        <h3>Project ${projectCount}</h3>
+
+        <label>Project Name</label>
+
+        <input
+            type="text"
+            class="project-name"
+            placeholder="Enter project name"
+        >
+
+        <label>Project Description</label>
+
+        <textarea
+            class="project-description"
+            placeholder="Explain your project..."
+        ></textarea>
+
+        <label>Technologies Used</label>
+
+        <input
+            type="text"
+            class="project-technologies"
+            placeholder="HTML, CSS, JavaScript, Python, SQL"
+        >
+
+        <label>Project Duration</label>
+
+        <input
+            type="text"
+            class="project-duration"
+            placeholder="3 Months"
+        >
+
+        <label>Your Role</label>
+
+        <input
+            type="text"
+            class="project-role"
+            placeholder="Developer / Team Leader"
+        >
+
+        <label>Project Link (Optional)</label>
+
+        <input
+            type="text"
+            class="project-link"
+            placeholder="https://example.com"
+        >
+
+        <label>GitHub Link (Optional)</label>
+
+        <input
+            type="text"
+            class="project-github"
+            placeholder="https://github.com/username/project"
+        >
+
+        <label>Project Certificate / Image (Optional)</label>
+
+        <input
+            type="file"
+            class="project-certificate"
+            accept="image/*,.pdf"
+        >
+
+        <button
+            type="button"
+            class="remove-btn"
+            onclick="removeProject(this)"
+        >
+            Remove Project
+        </button>
+
+    `;
+
+    container.appendChild(box);
+
+}
+
+
+function removeProject(button){
+
+    const boxes =
+        document.querySelectorAll(
+            ".project-box"
+        );
+
+
+    if(boxes.length <= 1){
+
+        alert(
+            "At least one project box is required."
+        );
+
+        return;
+
+    }
+
+
+    button.parentElement.remove();
+
+    updateProjectNumbers();
+
+}
+
+
+function updateProjectNumbers(){
+
+    const boxes =
+        document.querySelectorAll(
+            ".project-box"
+        );
+
+
+    boxes.forEach(
+        function(box,index){
+
+            box.querySelector("h3")
+                .textContent =
+                "Project " + (index + 1);
+
+        }
+    );
+
+
+    projectCount =
+        boxes.length;
+
+}
+
+
+/* =========================
+   CERTIFICATIONS
+========================= */
+
+let certificationCount = 1;
+
+
+function addCertification(){
+
+    certificationCount++;
+
+
+    const container =
+        document.getElementById(
+            "certificationsContainer"
+        );
+
+
+    const box =
+        document.createElement("div");
+
+    box.className =
+        "certificate-box";
+
+
+    box.innerHTML = `
+
+        <h3>Certification ${certificationCount}</h3>
+
+        <label>Certification Name</label>
+
+        <input
+            type="text"
+            class="cert-name"
+            placeholder="Python Programming"
+        >
+
+        <label>Issuing Organization</label>
+
+        <input
+            type="text"
+            class="cert-organization"
+            placeholder="Microsoft"
+        >
+
+        <label>Date / Year</label>
+
+        <input
+            type="text"
+            class="cert-date"
+            placeholder="2026"
+        >
+
+        <label>Certification ID (Optional)</label>
+
+        <input
+            type="text"
+            class="cert-id"
+        >
+
+        <label>Skills / Topics Covered</label>
+
+        <input
+            type="text"
+            class="cert-skills"
+            placeholder="Python, SQL, Data Analysis"
+        >
+
+        <label>Certification Description</label>
+
+        <textarea
+            class="cert-description"
+        ></textarea>
+
+        <label>Certificate Link (Optional)</label>
+
+        <input
+            type="text"
+            class="cert-link"
+            placeholder="https://example.com"
+        >
+
+        <label>Certificate Photo / PDF (Optional)</label>
+
+        <input
+            type="file"
+            class="cert-photo"
+            accept="image/*,.pdf"
+        >
+
+        <button
+            type="button"
+            class="remove-btn"
+            onclick="removeCertification(this)"
+        >
+            Remove Certification
+        </button>
+
+    `;
+
+
+    container.appendChild(box);
+
+}
+
+
+function removeCertification(button){
+
+    const boxes =
+        document.querySelectorAll(
+            ".certificate-box"
+        );
+
+
+    if(boxes.length <= 1){
+
+        alert(
+            "At least one certification box is required."
+        );
+
+        return;
+
+    }
+
+
+    button.parentElement.remove();
+
+    updateCertificationNumbers();
+
+}
+
+
+function updateCertificationNumbers(){
+
+    const boxes =
+        document.querySelectorAll(
+            ".certificate-box"
+        );
+
+
+    boxes.forEach(
+        function(box,index){
+
+            box.querySelector("h3")
+                .textContent =
+                "Certification " + (index + 1);
+
+        }
+    );
+
+
+    certificationCount =
+        boxes.length;
+
+}
+
+
+/* =========================
+   SAFE URL
+========================= */
+
+function safeURL(url){
+
+    if(!url){
+        return "";
+    }
+
+
+    if(
+        !url.startsWith("http://") &&
+        !url.startsWith("https://")
+    ){
+
+        return "https://" + url;
+
+    }
+
+
+    return url;
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(text){
+
+    return String(text)
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   TAGS
+========================= */
+
+function createTags(text){
+
+    if(!text){
+        return "";
+    }
+
+
+    return text
+
+        .split(",")
+
+        .map(function(item){
+
+            const value =
+                item.trim();
+
+
+            if(!value){
+                return "";
+            }
+
+
+            return `
+
+                <span class="skill-tag">
+                    ${escapeHTML(value)}
+                </span>
+
+            `;
+
+        })
+
+        .join("");
+
+}
+
+
+/* =========================
+   GENERATE RESUME
+========================= */
+
+function generateResume(){
+
+    const name =
+        document.getElementById(
+            "fullName"
+        ).value.trim();
+
+
+    const email =
+        document.getElementById(
+            "email"
+        ).value.trim();
+
+
+    const phone =
+        document.getElementById(
+            "phone"
+        ).value.trim();
+
+
+    if(!name){
+
+        alert(
+            "Please enter your Full Name."
+        );
+
+        return;
+
+    }
+
+
+    if(!email){
+
+        alert(
+            "Please enter your Email."
+        );
+
+        return;
+
+    }
+
+
+    if(!phone){
+
+        alert(
+            "Please enter your Mobile Number."
+        );
+
+        return;
+
+    }
+
+
+    /* NAME */
+
+    document.getElementById(
+        "previewName"
+    ).textContent =
+        name;
+
+
+    /* QUALIFICATION */
+
+    const qualification =
+        document.getElementById(
+            "qualification"
+        ).value.trim();
+
+
+    document.getElementById(
+        "previewQualificationTitle"
+    ).textContent =
+        qualification;
+
+
+    /* CONTACT */
+
+    let contact =
+        "📧 " +
+        escapeHTML(email);
+
+
+    contact +=
+        " &nbsp; | &nbsp; 📱 " +
+        escapeHTML(phone);
+
+
+    const address =
+        document.getElementById(
+            "address"
+        ).value.trim();
+
+
+    if(address){
+
+        contact +=
+            " &nbsp; | &nbsp; 📍 " +
+            escapeHTML(address);
+
+    }
+
+
+    const linkedin =
+        document.getElementById(
+            "linkedin"
+        ).value.trim();
+
+
+    const github =
+        document.getElementById(
+            "github"
+        ).value.trim();
+
+
+    const portfolio =
+        document.getElementById(
+            "portfolio"
+        ).value.trim();
+
+
+    if(linkedin){
+
+        contact +=
+            '<br>LinkedIn: <a href="' +
+            safeURL(linkedin) +
+            '" target="_blank">' +
+            escapeHTML(linkedin) +
+            "</a>";
+
+    }
+
+
+    if(github){
+
+        contact +=
+            '<br>GitHub: <a href="' +
+            safeURL(github) +
+            '" target="_blank">' +
+            escapeHTML(github) +
+            "</a>";
+
+    }
+
+
+    if(portfolio){
+
+        contact +=
+            '<br>Portfolio: <a href="' +
+            safeURL(portfolio) +
+            '" target="_blank">' +
+            escapeHTML(portfolio) +
+            "</a>";
+
+    }
+
+
+    document.getElementById(
+        "previewContact"
+    ).innerHTML =
+        contact;
+
+
+    /* PROFILE PHOTO */
+
+    const profilePhoto =
+        document.getElementById(
+            "profilePhoto"
+        );
+
+
+    const previewPhoto =
+        document.getElementById(
+            "previewPhoto"
+        );
+
+
+    if(profilePhoto.files.length){
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(e){
+
+                previewPhoto.src =
+                    e.target.result;
+
+                previewPhoto.style.display =
+                    "block";
+
+            };
+
+
+        reader.readAsDataURL(
+            profilePhoto.files[0]
+        );
+
+    }
+
+    else{
+
+        previewPhoto.style.display =
+            "none";
+
+    }
+
+
+    /* OBJECTIVE */
+
+    const objective =
+        document.getElementById(
+            "objective"
+        ).value.trim();
+
+
+    document.getElementById(
+        "previewObjective"
+    ).textContent =
+        objective;
+
+
+    document.getElementById(
+        "objectiveSection"
+    ).style.display =
+        objective
+        ? "block"
+        : "none";
+
+
+    /* EDUCATION */
+
+    const college =
+        document.getElementById(
+            "college"
+        ).value.trim();
+
+
+    const school =
+        document.getElementById(
+            "school"
+        ).value.trim();
+
+
+    const passingYear =
+        document.getElementById(
+            "passingYear"
+        ).value.trim();
+
+
+    const percentage =
+        document.getElementById(
+            "percentage"
+        ).value.trim();
+
+
+    document.getElementById(
+        "previewQualification"
+    ).textContent =
+        qualification;
+
+
+    document.getElementById(
+        "previewCollege"
+    ).textContent =
+        college
+        ? "College / University: " + college
+        : "";
+
+
+    document.getElementById(
+        "previewSchool"
+    ).textContent =
+        school
+        ? "School: " + school
+        : "";
+
+
+    document.getElementById(
+        "previewEducationDetails"
+    ).textContent =
+
+        (passingYear
+        ? "Passing Year: " + passingYear
+        : "") +
+
+        (percentage
+        ? " | " + percentage
+        : "");
+
+
+    /* SKILLS */
+
+    const skills =
+        document.getElementById(
+            "skills"
+        ).value.trim();
+
+
+    document.getElementById(
+        "previewSkills"
+    ).innerHTML =
+        createTags(skills);
+
+
+    document.getElementById(
+        "skillsSection"
+    ).style.display =
+        skills
+        ? "block"
+        : "none";
+
+
+    /* EXPERIENCE */
+
+    const company =
+        document.getElementById(
+            "company"
+        ).value.trim();
+
+
+    const jobPosition =
+        document.getElementById(
+            "jobPosition"
+        ).value.trim();
+
+
+    const experience =
+        document.getElementById(
+            "experienceDetails"
+        ).value.trim();
+
+
+    if(
+        company ||
+        jobPosition ||
+        experience
+    ){
+
+        document.getElementById(
+            "experienceSection"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "previewCompany"
+        ).textContent =
+            company;
+
+
+        document.getElementById(
+            "previewJobPosition"
+        ).textContent =
+            jobPosition;
+
+
+        document.getElementById(
+            "previewExperience"
+        ).textContent =
+            experience;
+
+    }
+
+    else{
+
+        document.getElementById(
+            "experienceSection"
+        ).style.display =
+            "none";
+
+    }
+
+
+    /* INTERNSHIP */
+
+    const internOrganization =
+        document.getElementById(
+            "internOrganization"
+        ).value.trim();
+
+
+    const internRole =
+        document.getElementById(
+            "internRole"
+        ).value.trim();
+
+
+    const internDetails =
+        document.getElementById(
+            "internDetails"
+        ).value.trim();
+
+
+    if(
+        internOrganization ||
+        internRole ||
+        internDetails
+    ){
+
+        document.getElementById(
+            "internshipSection"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "previewInternOrganization"
+        ).textContent =
+            internOrganization;
+
+
+        document.getElementById(
+            "previewInternRole"
+        ).textContent =
+            internRole;
+
+
+        document.getElementById(
+            "previewInternDetails"
+        ).textContent =
+            internDetails;
+
+    }
+
+    else{
+
+        document.getElementById(
+            "internshipSection"
+        ).style.display =
+            "none";
+
+    }
+
+
+    /* PROJECTS */
+
+    const projectBoxes =
+        document.querySelectorAll(
+            ".project-box"
+        );
+
+
+    const projectsPreview =
+        document.getElementById(
+            "projectsPreview"
+        );
+
+
+    projectsPreview.innerHTML = "";
+
+
+    let projectExists = false;
+
+
+    projectBoxes.forEach(
+        function(box){
+
+            const projectName =
+                box.querySelector(
+                    ".project-name"
+                ).value.trim();
+
+
+            const description =
+                box.querySelector(
+                    ".project-description"
+                ).value.trim();
+
+
+            const technologies =
+                box.querySelector(
+                    ".project-technologies"
+                ).value.trim();
+
+
+            const duration =
+                box.querySelector(
+                    ".project-duration"
+                ).value.trim();
+
+
+            const role =
+                box.querySelector(
+                    ".project-role"
+                ).value.trim();
+
+
+            const projectLink =
+                box.querySelector(
+                    ".project-link"
+                ).value.trim();
+
+
+            const projectGithub =
+                box.querySelector(
+                    ".project-github"
+                ).value.trim();
+
+
+            const certificate =
+                box.querySelector(
+                    ".project-certificate"
+                );
+
+
+            if(
+                projectName ||
+                description ||
+                technologies ||
+                duration ||
+                role ||
+                projectLink ||
+                projectGithub ||
+                certificate.files.length
+            ){
+
+                projectExists = true;
+
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "resume-item";
+
+
+                let html = "";
+
+
+                if(projectName){
+
+                    html +=
+                        "<h3>🚀 " +
+                        escapeHTML(projectName) +
+                        "</h3>";
+
+                }
+
+
+                if(description){
+
+                    html +=
+                        "<p><strong>Description:</strong> " +
+                        escapeHTML(description) +
+                        "</p>";
+
+                }
+
+
+                if(technologies){
+
+                    html +=
+                        "<p><strong>Technologies:</strong> " +
+                        escapeHTML(technologies) +
+                        "</p>";
+
+                }
+
+
+                if(duration){
+
+                    html +=
+                        "<p><strong>Duration:</strong> " +
+                        escapeHTML(duration) +
+                        "</p>";
+
+                }
+
+
+                if(role){
+
+                    html +=
+                        "<p><strong>Role:</strong> " +
+                        escapeHTML(role) +
+                        "</p>";
+
+                }
+
+
+                if(projectLink){
+
+                    html +=
+                        '<p><strong>Project Link:</strong> ' +
+
+                        '<a href="' +
+                        safeURL(projectLink) +
+                        '" target="_blank">' +
+
+                        escapeHTML(projectLink) +
+
+                        "</a></p>";
+
+                }
+
+
+                if(projectGithub){
+
+                    html +=
+                        '<p><strong>GitHub:</strong> ' +
+
+                        '<a href="' +
+                        safeURL(projectGithub) +
+                        '" target="_blank">' +
+
+                        escapeHTML(projectGithub) +
+
+                        "</a></p>";
+
+                }
+
+
+                item.innerHTML =
+                    html;
+
+
+                projectsPreview.appendChild(
+                    item
+                );
+
+
+                if(certificate.files.length){
+
+                    showFile(
+                        certificate.files[0],
+                        item,
+                        "Project Certificate"
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "projectsPreviewSection"
+    ).style.display =
+        projectExists
+        ? "block"
+        : "none";
+
+
+    /* PUBLICATION */
+
+    const publicationTitle =
+        document.getElementById(
+            "publicationTitle"
+        ).value.trim();
+
+
+    const publicationDetails =
+        document.getElementById(
+            "publicationDetails"
+        ).value.trim();
+
+
+    if(
+        publicationTitle ||
+        publicationDetails
+    ){
+
+        document.getElementById(
+            "publicationSection"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "previewPublicationTitle"
+        ).textContent =
+            publicationTitle;
+
+
+        document.getElementById(
+            "previewPublicationDetails"
+        ).textContent =
+            publicationDetails;
+
+    }
+
+    else{
+
+        document.getElementById(
+            "publicationSection"
+        ).style.display =
+            "none";
+
+    }
+
+
+    /* SEMINAR */
+
+    const seminarName =
+        document.getElementById(
+            "seminarName"
+        ).value.trim();
+
+
+    const seminarDetails =
+        document.getElementById(
+            "seminarDetails"
+        ).value.trim();
+
+
+    if(
+        seminarName ||
+        seminarDetails
+    ){
+
+        document.getElementById(
+            "seminarSection"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "previewSeminarName"
+        ).textContent =
+            seminarName;
+
+
+        document.getElementById(
+            "previewSeminarDetails"
+        ).textContent =
+            seminarDetails;
+
+    }
+
+    else{
+
+        document.getElementById(
+            "seminarSection"
+        ).style.display =
+            "none";
+
+    }
+
+
+    /* CERTIFICATIONS */
+
+    const certificateBoxes =
+        document.querySelectorAll(
+            ".certificate-box"
+        );
+
+
+    const certificationPreview =
+        document.getElementById(
+            "certificationsPreview"
+        );
+
+
+    certificationPreview.innerHTML = "";
+
+
+    let certificationExists = false;
+
+
+    certificateBoxes.forEach(
+        function(box){
+
+            const certName =
+                box.querySelector(
+                    ".cert-name"
+                ).value.trim();
+
+
+            const organization =
+                box.querySelector(
+                    ".cert-organization"
+                ).value.trim();
+
+
+            const date =
+                box.querySelector(
+                    ".cert-date"
+                ).value.trim();
+
+
+            const certId =
+                box.querySelector(
+                    ".cert-id"
+                ).value.trim();
+
+
+            const certSkills =
+                box.querySelector(
+                    ".cert-skills"
+                ).value.trim();
+
+
+            const description =
+                box.querySelector(
+                    ".cert-description"
+                ).value.trim();
+
+
+            const certLink =
+                box.querySelector(
+                    ".cert-link"
+                ).value.trim();
+
+
+            const certPhoto =
+                box.querySelector(
+                    ".cert-photo"
+                );
+
+
+            if(
+                certName ||
+                organization ||
+                date ||
+                certId ||
+                certSkills ||
+                description ||
+                certLink ||
+                certPhoto.files.length
+            ){
+
+                certificationExists = true;
+
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "resume-item";
+
+
+                let html = "";
+
+
+                if(certName){
+
+                    html +=
+                        "<h3>🏆 " +
+                        escapeHTML(certName) +
+                        "</h3>";
+
+                }
+
+
+                if(organization){
+
+                    html +=
+                        "<p><strong>Organization:</strong> " +
+                        escapeHTML(organization) +
+                        "</p>";
+
+                }
+
+
+                if(date){
+
+                    html +=
+                        "<p><strong>Date / Year:</strong> " +
+                        escapeHTML(date) +
+                        "</p>";
+
+                }
+
+
+                if(certId){
+
+                    html +=
+                        "<p><strong>Certification ID:</strong> " +
+                        escapeHTML(certId) +
+                        "</p>";
+
+                }
+
+
+                if(certSkills){
+
+                    html +=
+                        "<p><strong>Skills:</strong> " +
+                        escapeHTML(certSkills) +
+                        "</p>";
+
+                }
+
+
+                if(description){
+
+                    html +=
+                        "<p><strong>Description:</strong> " +
+                        escapeHTML(description) +
+                        "</p>";
+
+                }
+
+
+                if(certLink){
+
+                    html +=
+                        '<p><strong>Certificate:</strong> ' +
+
+                        '<a href="' +
+                        safeURL(certLink) +
+                        '" target="_blank">' +
+
+                        escapeHTML(certLink) +
+
+                        "</a></p>";
+
+                }
+
+
+                item.innerHTML =
+                    html;
+
+
+                certificationPreview.appendChild(
+                    item
+                );
+
+
+                if(certPhoto.files.length){
+
+                    showFile(
+                        certPhoto.files[0],
+                        item,
+                        "Certificate"
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "certificationPreviewSection"
+    ).style.display =
+        certificationExists
+        ? "block"
+        : "none";
+
+
+    /* LANGUAGES */
+
+    const languages =
+        document.getElementById(
+            "languages"
+        ).value.trim();
+
+
+    document.getElementById(
+        "previewLanguages"
+    ).innerHTML =
+        createTags(languages);
+
+
+    document.getElementById(
+        "languagesSection"
+    ).style.display =
+        languages
+        ? "block"
+        : "none";
+
+
+    /* HOBBIES */
+
+    const hobbies =
+        document.getElementById(
+            "hobbies"
+        ).value.trim();
+
+
+    document.getElementById(
+        "previewHobbies"
+    ).textContent =
+        hobbies;
+
+
+    document.getElementById(
+        "hobbiesSection"
+    ).style.display =
+        hobbies
+        ? "block"
+        : "none";
+
+
+    /* INTERESTS */
+
+    const interests =
+        document.getElementById(
+            "interests"
+        ).value.trim();
+
+
+    document.getElementById(
+        "previewInterests"
+    ).textContent =
+        interests;
+
+
+    document.getElementById(
+        "interestsSection"
+    ).style.display =
+        interests
+        ? "block"
+        : "none";
+
+
+    /* FAMILY */
+
+    const father =
+        document.getElementById(
+            "fatherName"
+        ).value.trim();
+
+
+    const mother =
+        document.getElementById(
+            "motherName"
+        ).value.trim();
+
+
+    const family =
+        document.getElementById(
+            "familyInfo"
+        ).value.trim();
+
+
+    if(
+        father ||
+        mother ||
+        family
+    ){
+
+        document.getElementById(
+            "familySection"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "previewFather"
+        ).textContent =
+            father
+            ? "Father's Name: " + father
+            : "";
+
+
+        document.getElementById(
+            "previewMother"
+        ).textContent =
+            mother
+            ? "Mother's Name: " + mother
+            : "";
+
+
+        document.getElementById(
+            "previewFamily"
+        ).textContent =
+            family;
+
+    }
+
+    else{
+
+        document.getElementById(
+            "familySection"
+        ).style.display =
+            "none";
+
+    }
+
+
+    /* ACHIEVEMENTS */
+
+    const achievements =
+        document.getElementById(
+            "achievements"
+        ).value.trim();
+
+
+    if(achievements){
+
+        document.getElementById(
+            "achievementsSection"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "previewAchievements"
+        ).textContent =
+            achievements;
+
+    }
+
+    else{
+
+        document.getElementById(
+            "achievementsSection"
+        ).style.display =
+            "none";
+
+    }
+
+
+    /* ACTIVITIES */
+
+    const activities =
+        document.getElementById(
+            "activities"
+        ).value.trim();
+
+
+    if(activities){
+
+        document.getElementById(
+            "activitiesSection"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "previewActivities"
+        ).textContent =
+            activities;
+
+    }
+
+    else{
+
+        document.getElementById(
+            "activitiesSection"
+        ).style.display =
+            "none";
+
+    }
+
+
+    /* ADDITIONAL */
+
+    const additional =
+        document.getElementById(
+            "additional"
+        ).value.trim();
+
+
+    if(additional){
+
+        document.getElementById(
+            "additionalSection"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "previewAdditional"
+        ).textContent =
+            additional;
+
+    }
+
+    else{
+
+        document.getElementById(
+            "additionalSection"
+        ).style.display =
+            "none";
+
+    }
+
+
+    /* EDUCATIONAL CERTIFICATES */
+
+    const files = [
+
+        {
+            id:"certificate10",
+            preview:"preview10",
+            title:"10th Certificate"
+        },
+
+        {
+            id:"certificate12",
+            preview:"preview12",
+            title:"12th Certificate"
+        },
+
+        {
+            id:"degreeCertificate",
+            preview:"previewDegree",
+            title:"Degree Certificate"
+        }
+
+    ];
+
+
+    let educationalExists = false;
+
+
+    files.forEach(
+        function(item){
+
+            const input =
+                document.getElementById(
+                    item.id
+                );
+
+
+            const preview =
+                document.getElementById(
+                    item.preview
+                );
+
+
+            preview.innerHTML = "";
+
+
+            if(input.files.length){
+
+                educationalExists = true;
+
+
+                const heading =
+                    document.createElement(
+                        "h3"
+                    );
+
+
+                heading.textContent =
+                    item.title;
+
+
+                preview.appendChild(
+                    heading
+                );
+
+
+                showFile(
+                    input.files[0],
+                    preview,
+                    item.title
+                );
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "educationalCertificatesSection"
+    ).style.display =
+        educationalExists
+        ? "block"
+        : "none";
+
+
+    /* SHOW RESUME */
+
+    const resume =
+        document.getElementById(
+            "resumePreview"
+        );
+
+
+    resume.style.display =
+        "block";
+
+
+    setTimeout(
+        function(){
+
+            resume.scrollIntoView({
+                behavior:"smooth"
+            });
+
+        },
+        150
+    );
+
+}
+
+
+/* =========================
+   SHOW FILE
+========================= */
+
+function showFile(
+    file,
+    container,
+    title
+){
+
+    if(
+        file.type.startsWith("image/")
+    ){
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(e){
+
+                const img =
+                    document.createElement(
+                        "img"
+                    );
+
+
+                img.src =
+                    e.target.result;
+
+
+                img.className =
+                    "certificate-preview";
+
+
+                img.alt =
+                    title;
+
+
+                container.appendChild(
+                    img
+                );
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+
+    else if(
+        file.type === "application/pdf"
+    ){
+
+        const box =
+            document.createElement(
+                "div"
+            );
+
+
+        box.className =
+            "pdf-box";
+
+
+        box.textContent =
+            "📄 " +
+            title +
+            ": " +
+            file.name;
+
+
+        container.appendChild(
+            box
+        );
+
+    }
+
+}
+
+
+/* =========================
+   PRINT / SAVE PDF
+========================= */
+
+function printResume(){
+
+    const resume =
+        document.getElementById(
+            "resumePreview"
+        );
+
+
+    if(
+        resume.style.display === "none"
+    ){
+
+        alert(
+            "Please click Generate Resume first."
+        );
+
+        return;
+
+    }
+
+
+    window.print();
+
+}
+
+</script>
+
+</body>
+</html>
