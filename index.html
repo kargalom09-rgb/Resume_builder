@@ -4,449 +4,296 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Resume Builder</title>
+<title>Student Resume Builder</title>
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
-    font-family:"Segoe UI",Arial,sans-serif;
-    background:linear-gradient(135deg,#eef2ff,#f8fafc,#ecfeff);
-    color:#172033;
-    min-height:100vh;
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#eef2f7;
+    color:#222;
 }
-
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar{
-    width:100%;
-    background:linear-gradient(135deg,#4f46e5,#7c3aed,#06b6d4);
-    color:white;
-    padding:18px 5%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:sticky;
-    top:0;
-    z-index:1000;
-    box-shadow:0 8px 25px rgba(79,70,229,.25);
-}
-
-.logo{
-    font-size:25px;
-    font-weight:800;
-    letter-spacing:.5px;
-}
-
-.logo span{
-    color:#a5f3fc;
-}
-
-/* =========================
-   MAIN
-========================= */
 
 .container{
-    width:94%;
-    max-width:1200px;
-    margin:35px auto;
+    width:95%;
+    max-width:1100px;
+    margin:30px auto;
 }
 
-.hero{
+.title{
     text-align:center;
-    margin-bottom:30px;
+    margin-bottom:25px;
 }
 
-.hero h1{
-    font-size:42px;
-    font-weight:800;
-    background:linear-gradient(90deg,#4f46e5,#7c3aed,#06b6d4);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    margin-bottom:10px;
+.title h1{
+    margin-bottom:8px;
+    color:#1d3557;
 }
 
-.hero p{
-    color:#64748b;
-    font-size:17px;
+.title p{
+    color:#666;
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* ================= FORM SECTIONS ================= */
 
 .section{
-    background:rgba(255,255,255,.96);
-    border:1px solid rgba(148,163,184,.2);
-    border-radius:18px;
-    margin-bottom:20px;
+    background:white;
+    margin-bottom:18px;
+    border-radius:10px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
     overflow:hidden;
-    box-shadow:0 12px 35px rgba(15,23,42,.08);
-    transition:.3s;
-}
-
-.section:hover{
-    transform:translateY(-2px);
-    box-shadow:0 18px 45px rgba(15,23,42,.12);
 }
 
 .section-header{
-    padding:19px 22px;
-    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    padding:17px 20px;
+    background:#1d3557;
     color:white;
-    font-size:18px;
-    font-weight:700;
+    font-size:19px;
+    font-weight:bold;
     cursor:pointer;
     display:flex;
-    align-items:center;
     justify-content:space-between;
 }
 
-.arrow{
-    transition:.3s;
-}
-
 .section-content{
-    padding:25px;
+    padding:20px;
 }
-
-.row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
-
-/* =========================
-   FORM
-========================= */
 
 label{
     display:block;
-    font-weight:700;
-    color:#334155;
-    margin:15px 0 7px;
+    font-weight:bold;
+    margin-top:14px;
+    margin-bottom:6px;
 }
 
 input,
 textarea,
 select{
     width:100%;
-    border:1px solid #dbe2ea;
-    background:#f8fafc;
-    padding:13px 14px;
-    border-radius:10px;
+    padding:11px;
+    border:1px solid #ccc;
+    border-radius:6px;
     font-size:15px;
-    color:#172033;
-    transition:.25s;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
 }
 
 input:focus,
 textarea:focus,
 select:focus{
     outline:none;
-    border-color:#6366f1;
-    background:white;
-    box-shadow:0 0 0 4px rgba(99,102,241,.1);
+    border-color:#1d3557;
 }
 
-textarea{
-    min-height:110px;
-    resize:vertical;
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
 }
 
-/* =========================
-   PROJECT / CERTIFICATE BOX
-========================= */
+/* ================= PROJECT / CERTIFICATE BOX ================= */
 
 .project-box,
 .certificate-box{
-    background:linear-gradient(135deg,#f8fafc,#eef2ff);
-    border:1px solid #dbe3f0;
-    border-radius:15px;
-    padding:22px;
+    background:#f8f9fa;
+    border:1px solid #d9d9d9;
+    border-radius:10px;
+    padding:20px;
     margin-bottom:20px;
 }
 
 .project-box h3,
 .certificate-box h3{
-    color:#4f46e5;
-    margin-bottom:10px;
-    font-size:19px;
+    margin-top:0;
+    color:#1d3557;
+    border-bottom:1px solid #ddd;
+    padding-bottom:10px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
-.add-btn,
-.remove-btn,
-.generate-btn,
-.print-btn{
-    border:none;
-    border-radius:10px;
-    padding:13px 20px;
-    font-size:15px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.25s;
-}
+/* ================= BUTTONS ================= */
 
 .add-btn{
-    background:#10b981;
+    background:#198754;
     color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:15px;
+    margin-top:5px;
 }
 
 .add-btn:hover{
-    background:#059669;
-    transform:translateY(-2px);
+    background:#157347;
 }
 
 .remove-btn{
-    background:#fee2e2;
-    color:#dc2626;
-    margin-top:10px;
+    background:#dc3545;
+    color:white;
+    border:none;
+    padding:10px 16px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:15px;
 }
 
 .remove-btn:hover{
-    background:#fecaca;
+    background:#bb2d3b;
 }
 
 .main-buttons{
     text-align:center;
-    margin:35px 0;
+    margin:25px 0;
 }
 
 .generate-btn{
+    background:#1d3557;
     color:white;
-    background:linear-gradient(135deg,#4f46e5,#7c3aed);
-    padding:16px 30px;
+    border:none;
+    padding:14px 30px;
+    border-radius:7px;
     font-size:17px;
-    box-shadow:0 10px 25px rgba(79,70,229,.25);
+    cursor:pointer;
+    margin:5px;
 }
 
 .generate-btn:hover{
-    transform:translateY(-3px);
+    background:#14253d;
 }
 
 .print-btn{
-    color:white;
-    background:#0f172a;
-    padding:16px 30px;
-    font-size:17px;
-    margin-left:10px;
+    background:#6c757d;
 }
 
 .print-btn:hover{
-    background:#1e293b;
-    transform:translateY(-3px);
+    background:#5c636a;
 }
 
-/* =========================
-   RESUME
-========================= */
+/* ================= RESUME PREVIEW ================= */
 
 #resumePreview{
     display:none;
+    background:white;
     width:100%;
     max-width:900px;
-    margin:40px auto;
-    background:white;
-    box-shadow:0 20px 60px rgba(15,23,42,.18);
-    border-radius:8px;
-    overflow:hidden;
+    margin:30px auto;
+    padding:45px;
+    box-shadow:0 3px 15px rgba(0,0,0,0.15);
 }
 
-/* RESUME HEADER */
-
-.resume-top{
-    background:linear-gradient(135deg,#312e81,#4f46e5,#06b6d4);
-    color:white;
-    padding:42px;
+.resume-header{
     display:flex;
-    gap:28px;
+    gap:25px;
     align-items:center;
+    border-bottom:3px solid #1d3557;
+    padding-bottom:20px;
 }
 
-.preview-photo{
-    width:135px;
-    height:135px;
-    border-radius:25px;
+.profile-photo{
+    width:130px;
+    height:130px;
+    border-radius:50%;
     object-fit:cover;
-    border:5px solid rgba(255,255,255,.8);
+    border:3px solid #1d3557;
     display:none;
-    background:white;
 }
 
 .resume-name{
-    font-size:36px;
-    font-weight:800;
-    margin-bottom:8px;
-}
-
-.resume-title{
-    font-size:17px;
-    opacity:.9;
-    margin-bottom:12px;
+    font-size:32px;
+    font-weight:bold;
+    color:#1d3557;
 }
 
 .resume-contact{
-    line-height:1.8;
-    font-size:14px;
-}
-
-.resume-contact a{
-    color:white;
-}
-
-/* RESUME BODY */
-
-.resume-body{
-    padding:38px 45px;
+    margin-top:10px;
+    line-height:1.7;
+    color:#555;
 }
 
 .resume-section{
-    margin-bottom:27px;
+    margin-top:25px;
 }
 
 .resume-section h2{
-    color:#4f46e5;
     font-size:20px;
-    border-left:5px solid #06b6d4;
-    padding-left:12px;
-    margin-bottom:15px;
+    color:#1d3557;
+    border-bottom:2px solid #1d3557;
+    padding-bottom:5px;
+    margin-bottom:12px;
 }
 
-.resume-section p{
-    line-height:1.7;
-    color:#475569;
+.resume-section h3{
+    margin-bottom:5px;
+    color:#333;
 }
 
 .resume-item{
-    margin-bottom:20px;
-    padding-bottom:15px;
-    border-bottom:1px solid #e2e8f0;
+    margin-bottom:18px;
 }
 
-.resume-item:last-child{
-    border-bottom:none;
-}
-
-.resume-item h3{
-    color:#172033;
-    margin-bottom:6px;
-}
-
-.resume-item strong{
-    color:#334155;
+.resume-item p{
+    margin:5px 0;
+    line-height:1.6;
 }
 
 .resume-item a{
-    color:#4f46e5;
-    word-break:break-word;
+    color:#0d6efd;
+    word-break:break-all;
 }
-
-/* TAGS */
-
-.skill-list{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-}
-
-.skill-tag{
-    padding:7px 12px;
-    background:#eef2ff;
-    color:#4f46e5;
-    border-radius:20px;
-    font-weight:600;
-    font-size:13px;
-}
-
-/* CERTIFICATE */
 
 .certificate-preview{
     max-width:100%;
-    max-height:420px;
-    margin-top:12px;
-    border-radius:8px;
-    border:1px solid #dbe2ea;
+    max-height:500px;
+    margin-top:10px;
+    border:1px solid #ddd;
 }
 
 .pdf-box{
-    background:#f1f5f9;
-    border-radius:8px;
-    padding:13px;
+    background:#f1f1f1;
+    padding:15px;
+    border-radius:6px;
     margin-top:10px;
-    color:#475569;
 }
 
-/* FOOTER */
-
-.footer{
-    text-align:center;
-    color:#64748b;
-    padding:25px;
-    font-size:14px;
+.preview-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* ================= MOBILE ================= */
 
 @media(max-width:700px){
 
-    .hero h1{
-        font-size:31px;
-    }
-
-    .hero p{
-        font-size:14px;
-    }
-
-    .row{
+    .row,
+    .preview-grid{
         grid-template-columns:1fr;
-        gap:0;
     }
 
-    .section-content{
-        padding:18px;
+    #resumePreview{
+        padding:20px;
     }
 
-    .resume-top{
+    .resume-header{
         flex-direction:column;
         text-align:center;
-        padding:30px 20px;
     }
 
     .resume-name{
-        font-size:28px;
-    }
-
-    .resume-body{
-        padding:25px 20px;
-    }
-
-    .print-btn{
-        margin-left:0;
-        margin-top:10px;
+        font-size:25px;
     }
 
 }
 
-/* =========================
-   PRINT
-========================= */
+/* ================= PRINT ================= */
 
 @media print{
 
@@ -454,24 +301,19 @@ textarea{
         background:white;
     }
 
-    .navbar,
     .container,
-    .footer{
+    .title,
+    .main-buttons{
         display:none !important;
     }
 
     #resumePreview{
         display:block !important;
-        max-width:none;
-        width:100%;
-        margin:0;
         box-shadow:none;
-        border-radius:0;
-    }
-
-    .resume-top{
-        -webkit-print-color-adjust:exact;
-        print-color-adjust:exact;
+        margin:0;
+        width:100%;
+        max-width:none;
+        padding:20px;
     }
 
 }
@@ -481,79 +323,43 @@ textarea{
 
 <body>
 
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-    <div class="logo">
-        Resume<span>Craft</span>
-    </div>
-
-</nav>
-
-
 <div class="container">
 
-<!-- HERO -->
-
-<div class="hero">
-
-    <h1>Resume Builder</h1>
-
-    <p>
-        Build a modern and professional resume in minutes.
-    </p>
-
+<div class="title">
+    <h1>Student Resume Builder</h1>
+    <p>Create your professional resume easily</p>
 </div>
 
 
-<!-- =========================
-     BASIC DETAILS
-========================= -->
+<!-- ================= BASIC DETAILS ================= -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-    <span>👤 Basic Details</span>
-    <span class="arrow">▼</span>
+    <span>Basic Details</span>
+    <span>▼</span>
 </div>
 
 <div class="section-content">
 
 <label>Full Name *</label>
-
-<input
-    type="text"
-    id="fullName"
-    placeholder="Enter your full name"
->
-
+<input type="text"
+id="fullName"
+placeholder="Enter your full name">
 
 <label>Profile Photo (Optional)</label>
-
-<input
-    type="file"
-    id="profilePhoto"
-    accept="image/*"
->
-
+<input type="file"
+id="profilePhoto"
+accept="image/*">
 
 <div class="row">
 
 <div>
-
 <label>Date of Birth (Optional)</label>
-
-<input
-    type="date"
-    id="dob"
->
-
+<input type="date" id="dob">
 </div>
 
-
 <div>
-
 <label>Gender (Optional)</label>
 
 <select id="gender">
@@ -569,73 +375,42 @@ textarea{
 
 </div>
 
-
 <label>Career Objective</label>
 
-<textarea
-    id="objective"
-    placeholder="Write a short and professional career objective..."
-></textarea>
+<textarea id="objective"
+placeholder="Write your career objective"></textarea>
 
 </div>
-
 </div>
 
 
-<!-- =========================
-     CONTACT
-========================= -->
+<!-- ================= CONTACT DETAILS ================= -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-
-<span>📞 Contact Details</span>
-
-<span class="arrow">▼</span>
-
+    <span>Contact Details</span>
+    <span>▼</span>
 </div>
-
 
 <div class="section-content">
 
-<div class="row">
-
-<div>
-
 <label>Email *</label>
 
-<input
-    type="email"
-    id="email"
-    placeholder="example@gmail.com"
->
-
-</div>
-
-
-<div>
+<input type="email"
+id="email"
+placeholder="example@gmail.com">
 
 <label>Mobile Number *</label>
 
-<input
-    type="tel"
-    id="phone"
-    placeholder="+91 9876543210"
->
-
-</div>
-
-</div>
-
+<input type="tel"
+id="phone"
+placeholder="Enter mobile number">
 
 <label>Address</label>
 
-<textarea
-    id="address"
-    placeholder="Enter your address"
-></textarea>
-
+<textarea id="address"
+placeholder="Enter your address"></textarea>
 
 <div class="row">
 
@@ -643,86 +418,60 @@ textarea{
 
 <label>LinkedIn (Optional)</label>
 
-<input
-    type="text"
-    id="linkedin"
-    placeholder="linkedin.com/in/username"
->
+<input type="text"
+id="linkedin"
+placeholder="linkedin.com/in/username">
 
 </div>
-
 
 <div>
 
 <label>GitHub (Optional)</label>
 
-<input
-    type="text"
-    id="github"
-    placeholder="github.com/username"
->
+<input type="text"
+id="github"
+placeholder="github.com/username">
 
 </div>
 
 </div>
-
 
 <label>Portfolio Website (Optional)</label>
 
-<input
-    type="text"
-    id="portfolio"
-    placeholder="https://example.com"
->
+<input type="text"
+id="portfolio"
+placeholder="https://example.com">
 
 </div>
-
 </div>
 
 
-<!-- =========================
-     EDUCATION
-========================= -->
+<!-- ================= EDUCATION ================= -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-
-<span>🎓 Education</span>
-
-<span class="arrow">▼</span>
-
+    <span>Education</span>
+    <span>▼</span>
 </div>
-
 
 <div class="section-content">
 
 <label>Highest Qualification</label>
 
-<input
-    type="text"
-    id="qualification"
-    placeholder="Example: T.Y. B.Sc. Computer Science"
->
-
+<input type="text"
+id="qualification">
 
 <label>College / University</label>
 
-<input
-    type="text"
-    id="college"
-    placeholder="Enter college or university"
->
-
+<input type="text"
+id="college">
 
 <label>School</label>
 
-<input
-    type="text"
-    id="school"
-    placeholder="Enter school name"
->
-
+<input type="text"
+id="school"
+placeholder="Enter school name">
 
 <div class="row">
 
@@ -730,376 +479,259 @@ textarea{
 
 <label>Passing Year</label>
 
-<input
-    type="text"
-    id="passingYear"
-    placeholder="2026"
->
+<input type="text"
+id="passingYear"
+placeholder="2026">
 
 </div>
-
 
 <div>
 
 <label>Percentage / CGPA</label>
 
-<input
-    type="text"
-    id="percentage"
-    placeholder="75% / 8.2 CGPA"
->
+<input type="text"
+id="percentage"
+placeholder="Example: 75% / 8.2 CGPA">
 
 </div>
 
 </div>
 
 </div>
-
 </div>
 
 
-<!-- =========================
-     EDUCATIONAL CERTIFICATES
-========================= -->
+<!-- ================= EDUCATIONAL CERTIFICATES ================= -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-
-<span>📜 Educational Certificates</span>
-
-<span class="arrow">▼</span>
-
+    <span>Educational Certificates</span>
+    <span>▼</span>
 </div>
-
 
 <div class="section-content">
 
 <label>10th Certificate (Optional)</label>
 
-<input
-    type="file"
-    id="certificate10"
-    accept="image/*,.pdf"
->
-
+<input type="file"
+id="certificate10"
+accept="image/*,.pdf">
 
 <label>12th Certificate (Optional)</label>
 
-<input
-    type="file"
-    id="certificate12"
-    accept="image/*,.pdf"
->
-
+<input type="file"
+id="certificate12"
+accept="image/*,.pdf">
 
 <label>Degree Certificate (Optional)</label>
 
-<input
-    type="file"
-    id="degreeCertificate"
-    accept="image/*,.pdf"
->
+<input type="file"
+id="degreeCertificate"
+accept="image/*,.pdf">
 
 </div>
-
 </div>
 
 
-<!-- =========================
-     SKILLS
-========================= -->
+<!-- ================= LANGUAGES ================= -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-
-<span>💻 Skills, Languages & Interests</span>
-
-<span class="arrow">▼</span>
-
+    <span>Languages, Hobbies & Interests</span>
+    <span>▼</span>
 </div>
-
 
 <div class="section-content">
 
-<label>Technical Skills</label>
-
-<input
-    type="text"
-    id="skills"
-    placeholder="C++, Python, HTML, SQL, Excel"
->
-
-
 <label>Languages Known</label>
 
-<input
-    type="text"
-    id="languages"
-    placeholder="English, Hindi, Marathi"
->
+<input type="text"
+id="languages"
+placeholder="Example: English, Hindi, Marathi">
 
+<label>Technical Skills</label>
+
+<input type="text"
+id="technicalSkills"
+placeholder="Example: C++, Python, HTML, SQL, Excel">
 
 <label>Hobbies (Optional)</label>
 
-<input
-    type="text"
-    id="hobbies"
-    placeholder="Reading, Cricket, Music"
->
-
+<input type="text"
+id="hobbies"
+placeholder="Example:Reading, Cricket, Music">
 
 <label>Interests (Optional)</label>
 
-<input
-    type="text"
-    id="interests"
-    placeholder="Web Development, AI, Data Science"
->
+<input type="text"
+id="interests">
 
 </div>
-
 </div>
 
 
-<!-- =========================
-     FAMILY
-========================= -->
+<!-- ================= FAMILY DETAILS ================= -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-
-<span>👨‍👩‍👦 Family Details</span>
-
-<span class="arrow">▼</span>
-
+    <span>Family Details</span>
+    <span>▼</span>
 </div>
-
 
 <div class="section-content">
 
 <label>Father's Name (Optional)</label>
 
-<input
-    type="text"
-    id="fatherName"
->
-
+<input type="text"
+id="fatherName">
 
 <label>Mother's Name (Optional)</label>
 
-<input
-    type="text"
-    id="motherName"
->
-
+<input type="text"
+id="motherName">
 
 <label>Family Information (Optional)</label>
 
-<textarea
-    id="familyInfo"
-></textarea>
+<textarea id="familyInfo"></textarea>
 
 </div>
-
 </div>
 
 
-<!-- =========================
-     EXPERIENCE
-========================= -->
+<!-- ================= EXPERIENCE ================= -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-
-<span>💼 Professional Experience</span>
-
-<span class="arrow">▼</span>
-
+    <span>Professional Experience (Optional)</span>
+    <span>▼</span>
 </div>
-
 
 <div class="section-content">
 
 <label>Company Name</label>
 
-<input
-    type="text"
-    id="company"
-    placeholder="Company name"
->
-
+<input type="text"
+id="company">
 
 <label>Job Position</label>
 
-<input
-    type="text"
-    id="jobPosition"
-    placeholder="Junior Developer"
->
-
+<input type="text"
+id="jobPosition">
 
 <label>Experience Details</label>
 
-<textarea
-    id="experienceDetails"
-    placeholder="Describe your responsibilities..."
-></textarea>
+<textarea id="experienceDetails"></textarea>
 
 </div>
-
 </div>
 
 
-<!-- =========================
-     INTERNSHIP
-========================= -->
+<!-- ================= INTERNSHIP ================= -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-
-<span>🧑‍💻 Internship</span>
-
-<span class="arrow">▼</span>
-
+    <span>Internship (Optional)</span>
+    <span>▼</span>
 </div>
-
 
 <div class="section-content">
 
 <label>Organization</label>
 
-<input
-    type="text"
-    id="internOrganization"
->
-
+<input type="text"
+id="internOrganization">
 
 <label>Internship Role</label>
 
-<input
-    type="text"
-    id="internRole"
->
-
+<input type="text"
+id="internRole">
 
 <label>Internship Details</label>
 
-<textarea
-    id="internDetails"
-></textarea>
+<textarea id="internDetails"></textarea>
 
 </div>
-
 </div>
 
 
-<!-- =========================
-     PROJECTS
-========================= -->
+<!-- ===================================================== -->
+<!-- ================= PROJECTS ========================== -->
+<!-- ===================================================== -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-
-<span>🚀 Projects</span>
-
-<span class="arrow">▼</span>
-
+    <span>Projects (Optional)</span>
+    <span>▼</span>
 </div>
-
 
 <div class="section-content">
 
 <div id="projectsContainer">
 
-
 <div class="project-box">
 
 <h3>Project 1</h3>
 
-
 <label>Project Name</label>
 
-<input
-    type="text"
-    class="project-name"
-    placeholder="Student Result Management System"
->
-
+<input type="text"
+class="project-name"
+placeholder="Example: Student Result Management System">
 
 <label>Project Description</label>
 
 <textarea
-    class="project-description"
-    placeholder="Explain your project..."
-></textarea>
-
+class="project-description"
+placeholder="Explain your project in detail"></textarea>
 
 <label>Technologies Used</label>
 
-<input
-    type="text"
-    class="project-technologies"
-    placeholder="HTML, CSS, JavaScript, Python, SQL"
->
-
+<input type="text"
+class="project-technologies"
+placeholder="Example: HTML, CSS, JavaScript, Python, SQL">
 
 <label>Project Duration</label>
 
-<input
-    type="text"
-    class="project-duration"
-    placeholder="3 Months"
->
-
+<input type="text"
+class="project-duration"
+placeholder="Example: 3 Months">
 
 <label>Your Role</label>
 
-<input
-    type="text"
-    class="project-role"
-    placeholder="Developer / Team Leader"
->
-
+<input type="text"
+class="project-role"
+placeholder="Example: Developer / Team Leader">
 
 <label>Project Link (Optional)</label>
 
-<input
-    type="text"
-    class="project-link"
-    placeholder="https://example.com"
->
-
+<input type="text"
+class="project-link"
+placeholder="https://example.com">
 
 <label>GitHub Link (Optional)</label>
 
-<input
-    type="text"
-    class="project-github"
-    placeholder="https://github.com/username/project"
->
-
+<input type="text"
+class="project-github"
+placeholder="https://github.com/username/project">
 
 <label>Project Certificate / Image (Optional)</label>
 
-<input
-    type="file"
-    class="project-certificate"
-    accept="image/*,.pdf"
->
+<input type="file"
+class="project-certificate"
+accept="image/*,.pdf">
 
+<button type="button"
+class="remove-btn"
+onclick="removeProject(this)">
 
-<button
-    type="button"
-    class="remove-btn"
-    onclick="removeProject(this)"
->
 Remove Project
+
 </button>
 
 </div>
@@ -1107,273 +739,210 @@ Remove Project
 </div>
 
 
-<button
-    type="button"
-    class="add-btn"
-    onclick="addProject()"
->
+<button type="button"
+class="add-btn"
+onclick="addProject()">
+
 + Add Another Project
+
 </button>
 
 </div>
-
 </div>
 
 
-<!-- =========================
-     PUBLICATIONS
-========================= -->
+<!-- ================= PUBLICATIONS ================= -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-
-<span>📚 Publications / Research / White Papers</span>
-
-<span class="arrow">▼</span>
-
+    <span>Publications / Research (Optional)</span>
+    <span>▼</span>
 </div>
-
 
 <div class="section-content">
 
-<label>Publication / Research Title</label>
+<label>Publication / Research Title (Optional)</label>
 
-<input
-    type="text"
-    id="publicationTitle"
->
+<input type="text"
+id="publicationTitle">
 
+<label>Details (Optional)</label>
 
-<label>Details</label>
-
-<textarea
-    id="publicationDetails"
-></textarea>
+<textarea id="publicationDetails"></textarea>
 
 </div>
-
 </div>
 
 
-<!-- =========================
-     SEMINARS
-========================= -->
+<!-- ================= SEMINARS ================= -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-
-<span>🎤 Seminars / Trainings / Workshops</span>
-
-<span class="arrow">▼</span>
-
+    <span>Seminars / Trainings / Workshops (Optional)</span>
+    <span>▼</span>
 </div>
-
 
 <div class="section-content">
 
-<label>Name</label>
+<label>Name (Optional)</label>
 
-<input
-    type="text"
-    id="seminarName"
->
+<input type="text"
+id="seminarName">
 
+<label>Details (Optional)</label>
 
-<label>Details</label>
-
-<textarea
-    id="seminarDetails"
-></textarea>
+<textarea id="seminarDetails"></textarea>
 
 </div>
-
 </div>
-
-
-<!-- =========================
-     CERTIFICATIONS
-========================= -->
+<!-- ===================================================== -->
+<!-- ================= CERTIFICATIONS ==================== -->
+<!-- ===================================================== -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-
-<span>🏆 Certifications / Assessments</span>
-
-<span class="arrow">▼</span>
-
+    <span>Certification / Assessments (Optional)</span>
+    <span>▼</span>
 </div>
-
 
 <div class="section-content">
 
 <div id="certificationsContainer">
 
-
 <div class="certificate-box">
 
 <h3>Certification 1</h3>
 
-
 <label>Certification Name</label>
 
-<input
-    type="text"
-    class="cert-name"
-    placeholder="Python Programming"
->
-
+<input type="text"
+class="cert-name"
+placeholder="Example: Python Programming">
 
 <label>Issuing Organization</label>
 
-<input
-    type="text"
-    class="cert-organization"
-    placeholder="Microsoft"
->
-
+<input type="text"
+class="cert-organization"
+placeholder="Example: Microsoft / Simplilearn / Coursera">
 
 <label>Date / Year</label>
 
-<input
-    type="text"
-    class="cert-date"
-    placeholder="2026"
->
-
+<input type="text"
+class="cert-date"
+placeholder="Example: 2026">
 
 <label>Certification ID (Optional)</label>
 
-<input
-    type="text"
-    class="cert-id"
->
-
+<input type="text"
+class="cert-id"
+placeholder="Enter certification ID">
 
 <label>Skills / Topics Covered</label>
 
-<input
-    type="text"
-    class="cert-skills"
-    placeholder="Python, SQL, Data Analysis"
->
-
+<input type="text"
+class="cert-skills"
+placeholder="Example: Python, SQL, Data Analysis">
 
 <label>Certification Description</label>
 
 <textarea
-    class="cert-description"
-></textarea>
-
+class="cert-description"
+placeholder="Enter complete certification details"></textarea>
 
 <label>Certificate Link (Optional)</label>
 
-<input
-    type="text"
-    class="cert-link"
-    placeholder="https://example.com"
->
-
+<input type="text"
+class="cert-link"
+placeholder="https://example.com/certificate">
 
 <label>Certificate Photo / PDF (Optional)</label>
 
-<input
-    type="file"
-    class="cert-photo"
-    accept="image/*,.pdf"
->
+<input type="file"
+class="cert-photo"
+accept="image/*,.pdf">
 
+<button type="button"
+class="remove-btn"
+onclick="removeCertification(this)">
 
-<button
-    type="button"
-    class="remove-btn"
-    onclick="removeCertification(this)"
->
 Remove Certification
+
 </button>
 
 </div>
 
 </div>
 
+<button type="button"
+class="add-btn"
+onclick="addCertification()">
 
-<button
-    type="button"
-    class="add-btn"
-    onclick="addCertification()"
->
 + Add Another Certification
+
 </button>
 
 </div>
-
 </div>
 
 
-<!-- =========================
-     OTHER
-========================= -->
+<!-- ===================================================== -->
+<!-- ================= OTHER DETAILS ===================== -->
+<!-- ===================================================== -->
 
 <div class="section">
 
 <div class="section-header" onclick="toggleSection(this)">
-
-<span>🌟 Achievements & Other Details</span>
-
-<span class="arrow">▼</span>
-
+    <span>Other Details</span>
+    <span>▼</span>
 </div>
-
 
 <div class="section-content">
 
-<label>Achievements</label>
+<label>Achievements (Optional)</label>
 
 <textarea
-    id="achievements"
-    placeholder="Enter your achievements..."
-></textarea>
+id="achievements"
+placeholder="Enter your achievements"></textarea>
 
-
-<label>Extra-Curricular Activities</label>
+<label>Extra-Curricular Activities (Optional)</label>
 
 <textarea
-    id="activities"
-></textarea>
+id="activities"
+placeholder="Enter your extra-curricular activities"></textarea>
 
-
-<label>Additional Information</label>
+<label>Additional Information (Optional)</label>
 
 <textarea
-    id="additional"
-></textarea>
+id="additional"
+placeholder="Enter additional information"></textarea>
 
 </div>
-
 </div>
 
 
-<!-- =========================
-     BUTTONS
-========================= -->
+<!-- ===================================================== -->
+<!-- ================= MAIN BUTTONS ====================== -->
+<!-- ===================================================== -->
 
 <div class="main-buttons">
 
 <button
-    class="generate-btn"
-    onclick="generateResume()"
->
-✨ Generate Resume
-</button>
+class="generate-btn"
+onclick="generateResume()">
 
+Generate Resume
+
+</button>
 
 <button
-    class="print-btn"
-    onclick="printResume()"
->
-🖨 Print / Save PDF
+class="generate-btn print-btn"
+onclick="printResume()">
+
+Print / Save PDF
+
 </button>
 
 </div>
@@ -1381,55 +950,46 @@ Remove Certification
 </div>
 
 
-<!-- =========================
-     RESUME PREVIEW
-========================= -->
+<!-- ===================================================== -->
+<!-- ================= RESUME PREVIEW ==================== -->
+<!-- ===================================================== -->
 
 <div id="resumePreview">
 
+<!-- ================= RESUME HEADER ================= -->
 
-<div class="resume-top">
+<div class="resume-header">
 
 <img
-    id="previewPhoto"
-    class="preview-photo"
->
+id="previewPhoto"
+class="profile-photo">
 
 <div>
 
 <div
-    class="resume-name"
-    id="previewName"
->
+class="resume-name"
+id="previewName">
+
 Your Name
+
 </div>
 
-
 <div
-    class="resume-title"
-    id="previewQualificationTitle"
-></div>
+class="resume-contact"
+id="previewContact">
 
-
-<div
-    class="resume-contact"
-    id="previewContact"
-></div>
+</div>
 
 </div>
 
 </div>
 
 
-<div class="resume-body">
-
-
-<!-- OBJECTIVE -->
+<!-- ================= OBJECTIVE ================= -->
 
 <div
-    class="resume-section"
-    id="objectiveSection"
->
+class="resume-section"
+id="objectiveSection">
 
 <h2>Career Objective</h2>
 
@@ -1438,7 +998,7 @@ Your Name
 </div>
 
 
-<!-- EDUCATION -->
+<!-- ================= EDUCATION ================= -->
 
 <div class="resume-section">
 
@@ -1459,39 +1019,20 @@ Your Name
 </div>
 
 
-<!-- SKILLS -->
+<!-- ================= EXPERIENCE ================= -->
 
 <div
-    class="resume-section"
-    id="skillsSection"
-    style="display:none"
->
-
-<h2>Technical Skills</h2>
-
-<div
-    class="skill-list"
-    id="previewSkills"
-></div>
-
-</div>
-
-
-<!-- EXPERIENCE -->
-
-<div
-    class="resume-section"
-    id="experienceSection"
-    style="display:none"
->
+class="resume-section"
+id="experienceSection"
+style="display:none;">
 
 <h2>Professional Experience</h2>
 
 <div class="resume-item">
 
-<h3 id="previewCompany"></h3>
+<h3 id="previewJobPosition"></h3>
 
-<p id="previewJobPosition"></p>
+<p id="previewCompany"></p>
 
 <p id="previewExperience"></p>
 
@@ -1500,21 +1041,20 @@ Your Name
 </div>
 
 
-<!-- INTERNSHIP -->
+<!-- ================= INTERNSHIP ================= -->
 
 <div
-    class="resume-section"
-    id="internshipSection"
-    style="display:none"
->
+class="resume-section"
+id="internshipSection"
+style="display:none;">
 
 <h2>Internship</h2>
 
 <div class="resume-item">
 
-<h3 id="previewInternOrganization"></h3>
+<h3 id="previewInternRole"></h3>
 
-<p id="previewInternRole"></p>
+<p id="previewInternOrganization"></p>
 
 <p id="previewInternDetails"></p>
 
@@ -1523,28 +1063,26 @@ Your Name
 </div>
 
 
-<!-- PROJECTS -->
+<!-- ================= PROJECTS ================= -->
 
 <div
-    class="resume-section"
-    id="projectsPreviewSection"
-    style="display:none"
->
+class="resume-section"
+id="projectsSection"
+style="display:none;">
 
 <h2>Projects</h2>
 
-<div id="projectsPreview"></div>
+<div id="previewProjects"></div>
 
 </div>
 
 
-<!-- PUBLICATIONS -->
+<!-- ================= PUBLICATIONS ================= -->
 
 <div
-    class="resume-section"
-    id="publicationSection"
-    style="display:none"
->
+class="resume-section"
+id="publicationSection"
+style="display:none;">
 
 <h2>Publications / Research / White Papers</h2>
 
@@ -1559,13 +1097,12 @@ Your Name
 </div>
 
 
-<!-- SEMINARS -->
+<!-- ================= SEMINARS ================= -->
 
 <div
-    class="resume-section"
-    id="seminarSection"
-    style="display:none"
->
+class="resume-section"
+id="seminarSection"
+style="display:none;">
 
 <h2>Seminars / Trainings / Workshops</h2>
 
@@ -1580,46 +1117,54 @@ Your Name
 </div>
 
 
-<!-- CERTIFICATIONS -->
+<!-- ================= CERTIFICATIONS ================= -->
 
 <div
-    class="resume-section"
-    id="certificationPreviewSection"
-    style="display:none"
->
+class="resume-section"
+id="certificationsSection"
+style="display:none;">
 
 <h2>Certifications / Assessments</h2>
 
-<div id="certificationsPreview"></div>
+<div id="previewCertifications"></div>
 
 </div>
 
 
-<!-- LANGUAGES -->
+<!-- ================= LANGUAGES ================= -->
 
 <div
-    class="resume-section"
-    id="languagesSection"
-    style="display:none"
->
+class="resume-section"
+id="languagesSection"
+style="display:none;">
 
 <h2>Languages</h2>
 
-<div
-    class="skill-list"
-    id="previewLanguages"
-></div>
+<p id="previewLanguages"></p>
 
 </div>
 
 
-<!-- HOBBIES -->
+<!-- ================= TECHNICAL SKILLS ================= -->
 
 <div
-    class="resume-section"
-    id="hobbiesSection"
-    style="display:none"
->
+class="resume-section"
+id="technicalSkillsSection"
+style="display:none;">
+
+<h2>Technical Skills</h2>
+
+<p id="previewTechnicalSkills"></p>
+
+</div>
+
+
+<!-- ================= HOBBIES ================= -->
+
+<div
+class="resume-section"
+id="hobbiesSection"
+style="display:none;">
 
 <h2>Hobbies</h2>
 
@@ -1628,13 +1173,12 @@ Your Name
 </div>
 
 
-<!-- INTERESTS -->
+<!-- ================= INTERESTS ================= -->
 
 <div
-    class="resume-section"
-    id="interestsSection"
-    style="display:none"
->
+class="resume-section"
+id="interestsSection"
+style="display:none;">
 
 <h2>Interests</h2>
 
@@ -1643,13 +1187,12 @@ Your Name
 </div>
 
 
-<!-- FAMILY -->
+<!-- ================= FAMILY ================= -->
 
 <div
-    class="resume-section"
-    id="familySection"
-    style="display:none"
->
+class="resume-section"
+id="familySection"
+style="display:none;">
 
 <h2>Family Details</h2>
 
@@ -1657,18 +1200,17 @@ Your Name
 
 <p id="previewMother"></p>
 
-<p id="previewFamily"></p>
+<p id="previewFamilyInfo"></p>
 
 </div>
 
 
-<!-- ACHIEVEMENTS -->
+<!-- ================= ACHIEVEMENTS ================= -->
 
 <div
-    class="resume-section"
-    id="achievementsSection"
-    style="display:none"
->
+class="resume-section"
+id="achievementsSection"
+style="display:none;">
 
 <h2>Achievements</h2>
 
@@ -1677,13 +1219,12 @@ Your Name
 </div>
 
 
-<!-- ACTIVITIES -->
+<!-- ================= ACTIVITIES ================= -->
 
 <div
-    class="resume-section"
-    id="activitiesSection"
-    style="display:none"
->
+class="resume-section"
+id="activitiesSection"
+style="display:none;">
 
 <h2>Extra-Curricular Activities</h2>
 
@@ -1692,13 +1233,12 @@ Your Name
 </div>
 
 
-<!-- ADDITIONAL -->
+<!-- ================= ADDITIONAL ================= -->
 
 <div
-    class="resume-section"
-    id="additionalSection"
-    style="display:none"
->
+class="resume-section"
+id="additionalSection"
+style="display:none;">
 
 <h2>Additional Information</h2>
 
@@ -1707,196 +1247,200 @@ Your Name
 </div>
 
 
-<!-- EDUCATIONAL CERTIFICATES -->
+<!-- ================= EDUCATIONAL CERTIFICATES ================= -->
 
 <div
-    class="resume-section"
-    id="educationalCertificatesSection"
-    style="display:none"
->
+class="resume-section"
+id="educationalCertificatesSection"
+style="display:none;">
 
 <h2>Educational Certificates</h2>
 
-<div id="preview10"></div>
-
-<div id="preview12"></div>
-
-<div id="previewDegree"></div>
+<div id="previewEducationalCertificates"></div>
 
 </div>
 
 
 </div>
 
-</div>
 
-
-<div class="footer">
-Resume Builder
-</div>
-
+<!-- ===================================================== -->
+<!-- ================= JAVASCRIPT ======================== -->
+<!-- ===================================================== -->
 
 <script>
-
-/* =========================
-   TOGGLE
-========================= */
 
 function toggleSection(header){
 
     const content =
         header.nextElementSibling;
 
-    const arrow =
-        header.querySelector(".arrow");
-
     if(content.style.display === "none"){
 
         content.style.display = "block";
 
-        arrow.style.transform =
-            "rotate(0deg)";
-
-    }
-
-    else{
+    }else{
 
         content.style.display = "none";
-
-        arrow.style.transform =
-            "rotate(-90deg)";
 
     }
 
 }
 
 
-/* =========================
-   PROJECTS
-========================= */
+/* ===================================================== */
+/* ================= SAFE URL ========================== */
+/* ===================================================== */
 
-let projectCount = 1;
+function safeURL(url){
 
+    url = (url || "").trim();
+
+    if(!url){
+
+        return "";
+
+    }
+
+    if(!/^https?:\/\//i.test(url)){
+
+        url = "https://" + url;
+
+    }
+
+    try{
+
+        const parsed =
+            new URL(url);
+
+        if(
+            parsed.protocol === "http:" ||
+            parsed.protocol === "https:"
+        ){
+
+            return parsed.href;
+
+        }
+
+    }catch(error){
+
+        return "";
+
+    }
+
+    return "";
+
+}
+
+
+/* ===================================================== */
+/* ================= ESCAPE HTML ======================= */
+/* ===================================================== */
+
+function escapeHTML(value){
+
+    return String(value || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* ===================================================== */
+/* ================= PROJECT FUNCTIONS ================= */
+/* ===================================================== */
 
 function addProject(){
-
-    projectCount++;
 
     const container =
         document.getElementById(
             "projectsContainer"
         );
 
-
-    const box =
+    const project =
         document.createElement("div");
 
-    box.className =
+    project.className =
         "project-box";
 
+    project.innerHTML = `
 
-    box.innerHTML = `
-
-        <h3>Project ${projectCount}</h3>
+        <h3>Project</h3>
 
         <label>Project Name</label>
 
-        <input
-            type="text"
-            class="project-name"
-            placeholder="Enter project name"
-        >
+        <input type="text"
+        class="project-name"
+        placeholder="Example: Resume Builder">
 
         <label>Project Description</label>
 
         <textarea
-            class="project-description"
-            placeholder="Explain your project..."
-        ></textarea>
+        class="project-description"
+        placeholder="Explain your project"></textarea>
 
         <label>Technologies Used</label>
 
-        <input
-            type="text"
-            class="project-technologies"
-            placeholder="HTML, CSS, JavaScript, Python, SQL"
-        >
+        <input type="text"
+        class="project-technologies"
+        placeholder="HTML, CSS, JavaScript">
 
         <label>Project Duration</label>
 
-        <input
-            type="text"
-            class="project-duration"
-            placeholder="3 Months"
-        >
+        <input type="text"
+        class="project-duration"
+        placeholder="Example: 3 Months">
 
         <label>Your Role</label>
 
-        <input
-            type="text"
-            class="project-role"
-            placeholder="Developer / Team Leader"
-        >
+        <input type="text"
+        class="project-role"
+        placeholder="Example: Developer">
 
         <label>Project Link (Optional)</label>
 
-        <input
-            type="text"
-            class="project-link"
-            placeholder="https://example.com"
-        >
+        <input type="text"
+        class="project-link"
+        placeholder="https://example.com">
 
         <label>GitHub Link (Optional)</label>
 
-        <input
-            type="text"
-            class="project-github"
-            placeholder="https://github.com/username/project"
-        >
+        <input type="text"
+        class="project-github"
+        placeholder="https://github.com/username/project">
 
         <label>Project Certificate / Image (Optional)</label>
 
-        <input
-            type="file"
-            class="project-certificate"
-            accept="image/*,.pdf"
-        >
+        <input type="file"
+        class="project-certificate"
+        accept="image/*,.pdf">
 
-        <button
-            type="button"
-            class="remove-btn"
-            onclick="removeProject(this)"
-        >
-            Remove Project
+        <button type="button"
+        class="remove-btn"
+        onclick="removeProject(this)">
+
+        Remove Project
+
         </button>
 
     `;
 
-    container.appendChild(box);
+    container.appendChild(project);
+
+    updateProjectNumbers();
 
 }
 
 
 function removeProject(button){
 
-    const boxes =
-        document.querySelectorAll(
-            ".project-box"
-        );
+    const project =
+        button.parentElement;
 
-
-    if(boxes.length <= 1){
-
-        alert(
-            "At least one project box is required."
-        );
-
-        return;
-
-    }
-
-
-    button.parentElement.remove();
+    project.remove();
 
     updateProjectNumbers();
 
@@ -1905,155 +1449,118 @@ function removeProject(button){
 
 function updateProjectNumbers(){
 
-    const boxes =
+    const projects =
         document.querySelectorAll(
-            ".project-box"
+            "#projectsContainer .project-box"
         );
 
+    projects.forEach(
+        (project,index)=>{
 
-    boxes.forEach(
-        function(box,index){
+            const heading =
+                project.querySelector("h3");
 
-            box.querySelector("h3")
-                .textContent =
+            heading.textContent =
                 "Project " + (index + 1);
 
         }
     );
 
-
-    projectCount =
-        boxes.length;
-
 }
 
 
-/* =========================
-   CERTIFICATIONS
-========================= */
-
-let certificationCount = 1;
-
+/* ===================================================== */
+/* ============== CERTIFICATION FUNCTIONS ============== */
+/* ===================================================== */
 
 function addCertification(){
-
-    certificationCount++;
-
 
     const container =
         document.getElementById(
             "certificationsContainer"
         );
 
-
-    const box =
+    const certificate =
         document.createElement("div");
 
-    box.className =
+    certificate.className =
         "certificate-box";
 
+    certificate.innerHTML = `
 
-    box.innerHTML = `
-
-        <h3>Certification ${certificationCount}</h3>
+        <h3>Certification</h3>
 
         <label>Certification Name</label>
 
-        <input
-            type="text"
-            class="cert-name"
-            placeholder="Python Programming"
-        >
+        <input type="text"
+        class="cert-name"
+        placeholder="Example: Python Programming">
 
         <label>Issuing Organization</label>
 
-        <input
-            type="text"
-            class="cert-organization"
-            placeholder="Microsoft"
-        >
+        <input type="text"
+        class="cert-organization"
+        placeholder="Example: Microsoft / Coursera">
 
         <label>Date / Year</label>
 
-        <input
-            type="text"
-            class="cert-date"
-            placeholder="2026"
-        >
+        <input type="text"
+        class="cert-date"
+        placeholder="Example: 2026">
 
         <label>Certification ID (Optional)</label>
 
-        <input
-            type="text"
-            class="cert-id"
-        >
+        <input type="text"
+        class="cert-id"
+        placeholder="Enter certification ID">
 
         <label>Skills / Topics Covered</label>
 
-        <input
-            type="text"
-            class="cert-skills"
-            placeholder="Python, SQL, Data Analysis"
-        >
+        <input type="text"
+        class="cert-skills"
+        placeholder="Python, SQL, Data Analysis">
 
         <label>Certification Description</label>
 
         <textarea
-            class="cert-description"
-        ></textarea>
+        class="cert-description"
+        placeholder="Enter certification details"></textarea>
 
         <label>Certificate Link (Optional)</label>
 
-        <input
-            type="text"
-            class="cert-link"
-            placeholder="https://example.com"
-        >
+        <input type="text"
+        class="cert-link"
+        placeholder="https://example.com/certificate">
 
         <label>Certificate Photo / PDF (Optional)</label>
 
-        <input
-            type="file"
-            class="cert-photo"
-            accept="image/*,.pdf"
-        >
+        <input type="file"
+        class="cert-photo"
+        accept="image/*,.pdf">
 
-        <button
-            type="button"
-            class="remove-btn"
-            onclick="removeCertification(this)"
-        >
-            Remove Certification
+        <button type="button"
+        class="remove-btn"
+        onclick="removeCertification(this)">
+
+        Remove Certification
+
         </button>
 
     `;
 
+    container.appendChild(certificate);
 
-    container.appendChild(box);
+    updateCertificationNumbers();
 
 }
 
 
 function removeCertification(button){
 
-    const boxes =
-        document.querySelectorAll(
-            ".certificate-box"
-        );
+    const certificate =
+        button.parentElement;
 
-
-    if(boxes.length <= 1){
-
-        alert(
-            "At least one certification box is required."
-        );
-
-        return;
-
-    }
-
-
-    button.parentElement.remove();
+    certificate.remove();
 
     updateCertificationNumbers();
 
@@ -2062,146 +1569,64 @@ function removeCertification(button){
 
 function updateCertificationNumbers(){
 
-    const boxes =
+    const certificates =
         document.querySelectorAll(
-            ".certificate-box"
+            "#certificationsContainer .certificate-box"
         );
 
+    certificates.forEach(
+        (certificate,index)=>{
 
-    boxes.forEach(
-        function(box,index){
+            const heading =
+                certificate.querySelector("h3");
 
-            box.querySelector("h3")
-                .textContent =
+            heading.textContent =
                 "Certification " + (index + 1);
 
         }
     );
 
-
-    certificationCount =
-        boxes.length;
-
 }
 
+</script>
 
-/* =========================
-   SAFE URL
-========================= */
-
-function safeURL(url){
-
-    if(!url){
-        return "";
-    }
-
-
-    if(
-        !url.startsWith("http://") &&
-        !url.startsWith("https://")
-    ){
-
-        return "https://" + url;
-
-    }
-
-
-    return url;
-
-}
-
-
-/* =========================
-   ESCAPE HTML
-========================= */
-
-function escapeHTML(text){
-
-    return String(text)
-
-        .replace(/&/g,"&amp;")
-
-        .replace(/</g,"&lt;")
-
-        .replace(/>/g,"&gt;")
-
-        .replace(/"/g,"&quot;")
-
-        .replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================
-   TAGS
-========================= */
-
-function createTags(text){
-
-    if(!text){
-        return "";
-    }
-
-
-    return text
-
-        .split(",")
-
-        .map(function(item){
-
-            const value =
-                item.trim();
-
-
-            if(!value){
-                return "";
-            }
-
-
-            return `
-
-                <span class="skill-tag">
-                    ${escapeHTML(value)}
-                </span>
-
-            `;
-
-        })
-
-        .join("");
-
-}
-
-
-/* =========================
-   GENERATE RESUME
-========================= */
-
+<script>
 function generateResume(){
 
-    const name =
-        document.getElementById(
-            "fullName"
-        ).value.trim();
+    /* ================= BASIC DETAILS ================= */
 
+    const fullName =
+        document.getElementById("fullName")
+        .value.trim();
 
     const email =
-        document.getElementById(
-            "email"
-        ).value.trim();
-
+        document.getElementById("email")
+        .value.trim();
 
     const phone =
-        document.getElementById(
-            "phone"
-        ).value.trim();
+        document.getElementById("phone")
+        .value.trim();
+
+    const dob =
+        document.getElementById("dob")
+        .value.trim();
+
+    const gender =
+        document.getElementById("gender")
+        .value.trim();
+
+    const objective =
+        document.getElementById("objective")
+        .value.trim();
 
 
-    if(!name){
+    /* ================= VALIDATION ================= */
 
-        alert(
-            "Please enter your Full Name."
-        );
+    if(!fullName){
+
+        alert("Please enter your Full Name.");
+
+        document.getElementById("fullName").focus();
 
         return;
 
@@ -2210,9 +1635,9 @@ function generateResume(){
 
     if(!email){
 
-        alert(
-            "Please enter your Email."
-        );
+        alert("Please enter your Email.");
+
+        document.getElementById("email").focus();
 
         return;
 
@@ -2221,131 +1646,240 @@ function generateResume(){
 
     if(!phone){
 
-        alert(
-            "Please enter your Mobile Number."
-        );
+        alert("Please enter your Mobile Number.");
+
+        document.getElementById("phone").focus();
 
         return;
 
     }
 
 
-    /* NAME */
+    /* ================= CONTACT ================= */
+
+    const address =
+        document.getElementById("address")
+        .value.trim();
+
+    const linkedin =
+        document.getElementById("linkedin")
+        .value.trim();
+
+    const github =
+        document.getElementById("github")
+        .value.trim();
+
+    const portfolio =
+        document.getElementById("portfolio")
+        .value.trim();
+
+
+    /* ================= EDUCATION ================= */
+
+    const qualification =
+        document.getElementById("qualification")
+        .value.trim();
+
+    const college =
+        document.getElementById("college")
+        .value.trim();
+
+    const school =
+        document.getElementById("school")
+        .value.trim();
+
+    const passingYear =
+        document.getElementById("passingYear")
+        .value.trim();
+
+    const percentage =
+        document.getElementById("percentage")
+        .value.trim();
+
+
+    /* ================= HEADER ================= */
 
     document.getElementById(
         "previewName"
-    ).textContent =
-        name;
+    ).textContent = fullName;
 
 
-    /* QUALIFICATION */
+    let contactHTML = "";
 
-    const qualification =
-        document.getElementById(
-            "qualification"
-        ).value.trim();
+    if(email){
 
+        contactHTML +=
+            "Email: " +
+            escapeHTML(email);
 
-    document.getElementById(
-        "previewQualificationTitle"
-    ).textContent =
-        qualification;
+    }
 
 
-    /* CONTACT */
+    if(phone){
 
-    let contact =
-        "📧 " +
-        escapeHTML(email);
+        if(contactHTML){
 
+            contactHTML += " | ";
 
-    contact +=
-        " &nbsp; | &nbsp; 📱 " +
-        escapeHTML(phone);
+        }
 
+        contactHTML +=
+            "Mobile: " +
+            escapeHTML(phone);
 
-    const address =
-        document.getElementById(
-            "address"
-        ).value.trim();
+    }
 
 
     if(address){
 
-        contact +=
-            " &nbsp; | &nbsp; 📍 " +
+        contactHTML +=
+            "<br>Address: " +
             escapeHTML(address);
 
     }
 
 
-    const linkedin =
-        document.getElementById(
-            "linkedin"
-        ).value.trim();
+    if(dob){
 
-
-    const github =
-        document.getElementById(
-            "github"
-        ).value.trim();
-
-
-    const portfolio =
-        document.getElementById(
-            "portfolio"
-        ).value.trim();
-
-
-    if(linkedin){
-
-        contact +=
-            '<br>LinkedIn: <a href="' +
-            safeURL(linkedin) +
-            '" target="_blank">' +
-            escapeHTML(linkedin) +
-            "</a>";
+        contactHTML +=
+            "<br>Date of Birth: " +
+            escapeHTML(dob);
 
     }
 
 
-    if(github){
+    if(gender){
 
-        contact +=
-            '<br>GitHub: <a href="' +
-            safeURL(github) +
-            '" target="_blank">' +
-            escapeHTML(github) +
-            "</a>";
+        contactHTML +=
+            "<br>Gender: " +
+            escapeHTML(gender);
 
     }
 
 
-    if(portfolio){
+    /* ================= LINKS ================= */
 
-        contact +=
-            '<br>Portfolio: <a href="' +
-            safeURL(portfolio) +
-            '" target="_blank">' +
-            escapeHTML(portfolio) +
-            "</a>";
+    const linkedInURL =
+        safeURL(linkedin);
+
+    const githubURL =
+        safeURL(github);
+
+    const portfolioURL =
+        safeURL(portfolio);
+
+
+    if(linkedInURL){
+
+        contactHTML +=
+            '<br><a href="' +
+            escapeHTML(linkedInURL) +
+            '" target="_blank">LinkedIn</a>';
+
+    }
+
+
+    if(githubURL){
+
+        contactHTML +=
+            ' | <a href="' +
+            escapeHTML(githubURL) +
+            '" target="_blank">GitHub</a>';
+
+    }
+
+
+    if(portfolioURL){
+
+        contactHTML +=
+            ' | <a href="' +
+            escapeHTML(portfolioURL) +
+            '" target="_blank">Portfolio</a>';
 
     }
 
 
     document.getElementById(
         "previewContact"
-    ).innerHTML =
-        contact;
+    ).innerHTML = contactHTML;
 
 
-    /* PROFILE PHOTO */
+    /* ================= OBJECTIVE ================= */
 
-    const profilePhoto =
+    document.getElementById(
+        "previewObjective"
+    ).textContent = objective;
+
+
+    document.getElementById(
+        "objectiveSection"
+    ).style.display =
+        objective ? "block" : "none";
+
+
+    /* ================= EDUCATION ================= */
+
+    document.getElementById(
+        "previewQualification"
+    ).textContent = qualification;
+
+
+    document.getElementById(
+        "previewCollege"
+    ).textContent =
+        college ?
+        "College / University: " +
+        college : "";
+
+
+    document.getElementById(
+        "previewSchool"
+    ).textContent =
+        school ?
+        "School: " +
+        school : "";
+
+
+    let educationDetails = "";
+
+
+    if(passingYear){
+
+        educationDetails +=
+            "Passing Year: " +
+            passingYear;
+
+    }
+
+
+    if(percentage){
+
+        if(educationDetails){
+
+            educationDetails +=
+                " | ";
+
+        }
+
+        educationDetails +=
+            "Percentage / CGPA: " +
+            percentage;
+
+    }
+
+
+    document.getElementById(
+        "previewEducationDetails"
+    ).textContent =
+        educationDetails;
+
+
+    /* ================= PROFILE PHOTO ================= */
+
+    const photoInput =
         document.getElementById(
             "profilePhoto"
         );
-
 
     const previewPhoto =
         document.getElementById(
@@ -2353,31 +1887,35 @@ function generateResume(){
         );
 
 
-    if(profilePhoto.files.length){
+    if(
+        photoInput.files &&
+        photoInput.files.length > 0
+    ){
 
-        const reader =
-            new FileReader();
+        const file =
+            photoInput.files[0];
 
+        if(file.type.startsWith("image/")){
 
-        reader.onload =
-            function(e){
+            const reader =
+                new FileReader();
 
-                previewPhoto.src =
-                    e.target.result;
+            reader.onload =
+                function(event){
 
-                previewPhoto.style.display =
-                    "block";
+                    previewPhoto.src =
+                        event.target.result;
 
-            };
+                    previewPhoto.style.display =
+                        "block";
 
+                };
 
-        reader.readAsDataURL(
-            profilePhoto.files[0]
-        );
+            reader.readAsDataURL(file);
 
-    }
+        }
 
-    else{
+    }else{
 
         previewPhoto.style.display =
             "none";
@@ -2385,126 +1923,19 @@ function generateResume(){
     }
 
 
-    /* OBJECTIVE */
-
-    const objective =
-        document.getElementById(
-            "objective"
-        ).value.trim();
-
-
-    document.getElementById(
-        "previewObjective"
-    ).textContent =
-        objective;
-
-
-    document.getElementById(
-        "objectiveSection"
-    ).style.display =
-        objective
-        ? "block"
-        : "none";
-
-
-    /* EDUCATION */
-
-    const college =
-        document.getElementById(
-            "college"
-        ).value.trim();
-
-
-    const school =
-        document.getElementById(
-            "school"
-        ).value.trim();
-
-
-    const passingYear =
-        document.getElementById(
-            "passingYear"
-        ).value.trim();
-
-
-    const percentage =
-        document.getElementById(
-            "percentage"
-        ).value.trim();
-
-
-    document.getElementById(
-        "previewQualification"
-    ).textContent =
-        qualification;
-
-
-    document.getElementById(
-        "previewCollege"
-    ).textContent =
-        college
-        ? "College / University: " + college
-        : "";
-
-
-    document.getElementById(
-        "previewSchool"
-    ).textContent =
-        school
-        ? "School: " + school
-        : "";
-
-
-    document.getElementById(
-        "previewEducationDetails"
-    ).textContent =
-
-        (passingYear
-        ? "Passing Year: " + passingYear
-        : "") +
-
-        (percentage
-        ? " | " + percentage
-        : "");
-
-
-    /* SKILLS */
-
-    const skills =
-        document.getElementById(
-            "skills"
-        ).value.trim();
-
-
-    document.getElementById(
-        "previewSkills"
-    ).innerHTML =
-        createTags(skills);
-
-
-    document.getElementById(
-        "skillsSection"
-    ).style.display =
-        skills
-        ? "block"
-        : "none";
-
-
-    /* EXPERIENCE */
+    /* ================================================= */
+    /* ================ EXPERIENCE ===================== */
+    /* ================================================= */
 
     const company =
-        document.getElementById(
-            "company"
-        ).value.trim();
-
+        document.getElementById("company")
+        .value.trim();
 
     const jobPosition =
-        document.getElementById(
-            "jobPosition"
-        ).value.trim();
+        document.getElementById("jobPosition")
+        .value.trim();
 
-
-    const experience =
+    const experienceDetails =
         document.getElementById(
             "experienceDetails"
         ).value.trim();
@@ -2513,57 +1944,50 @@ function generateResume(){
     if(
         company ||
         jobPosition ||
-        experience
+        experienceDetails
     ){
 
         document.getElementById(
             "experienceSection"
-        ).style.display =
-            "block";
-
-
-        document.getElementById(
-            "previewCompany"
-        ).textContent =
-            company;
-
+        ).style.display = "block";
 
         document.getElementById(
             "previewJobPosition"
         ).textContent =
             jobPosition;
 
+        document.getElementById(
+            "previewCompany"
+        ).textContent =
+            company;
 
         document.getElementById(
             "previewExperience"
         ).textContent =
-            experience;
+            experienceDetails;
 
-    }
-
-    else{
+    }else{
 
         document.getElementById(
             "experienceSection"
-        ).style.display =
-            "none";
+        ).style.display = "none";
 
     }
 
 
-    /* INTERNSHIP */
+    /* ================================================= */
+    /* ================= INTERNSHIP ==================== */
+    /* ================================================= */
 
     const internOrganization =
         document.getElementById(
             "internOrganization"
         ).value.trim();
 
-
     const internRole =
         document.getElementById(
             "internRole"
         ).value.trim();
-
 
     const internDetails =
         document.getElementById(
@@ -2579,259 +2003,253 @@ function generateResume(){
 
         document.getElementById(
             "internshipSection"
-        ).style.display =
-            "block";
-
-
-        document.getElementById(
-            "previewInternOrganization"
-        ).textContent =
-            internOrganization;
-
+        ).style.display = "block";
 
         document.getElementById(
             "previewInternRole"
         ).textContent =
             internRole;
 
+        document.getElementById(
+            "previewInternOrganization"
+        ).textContent =
+            internOrganization;
 
         document.getElementById(
             "previewInternDetails"
         ).textContent =
             internDetails;
 
-    }
-
-    else{
+    }else{
 
         document.getElementById(
             "internshipSection"
-        ).style.display =
-            "none";
+        ).style.display = "none";
 
     }
 
 
-    /* PROJECTS */
+    /* ================================================= */
+    /* ==================== PROJECTS =================== */
+    /* ================================================= */
 
     const projectBoxes =
         document.querySelectorAll(
-            ".project-box"
+            "#projectsContainer .project-box"
         );
 
-
-    const projectsPreview =
+    const previewProjects =
         document.getElementById(
-            "projectsPreview"
+            "previewProjects"
         );
 
 
-    projectsPreview.innerHTML = "";
+    previewProjects.innerHTML = "";
 
 
-    let projectExists = false;
+    let hasProjects = false;
 
 
     projectBoxes.forEach(
-        function(box){
+        function(project,index){
 
-            const projectName =
-                box.querySelector(
+            const name =
+                project.querySelector(
                     ".project-name"
                 ).value.trim();
 
-
             const description =
-                box.querySelector(
+                project.querySelector(
                     ".project-description"
                 ).value.trim();
 
-
             const technologies =
-                box.querySelector(
+                project.querySelector(
                     ".project-technologies"
                 ).value.trim();
 
-
             const duration =
-                box.querySelector(
+                project.querySelector(
                     ".project-duration"
                 ).value.trim();
 
-
             const role =
-                box.querySelector(
+                project.querySelector(
                     ".project-role"
                 ).value.trim();
 
-
-            const projectLink =
-                box.querySelector(
+            const link =
+                project.querySelector(
                     ".project-link"
                 ).value.trim();
 
-
             const projectGithub =
-                box.querySelector(
+                project.querySelector(
                     ".project-github"
                 ).value.trim();
 
 
-            const certificate =
-                box.querySelector(
+            if(
+                !name &&
+                !description &&
+                !technologies &&
+                !duration &&
+                !role &&
+                !link &&
+                !projectGithub
+            ){
+
+                return;
+
+            }
+
+
+            hasProjects = true;
+
+
+            let html = "";
+
+            html +=
+                '<div class="resume-item">';
+
+
+            html +=
+                "<h3>" +
+                escapeHTML(
+                    name ||
+                    "Project " +
+                    (index + 1)
+                ) +
+                "</h3>";
+
+
+            if(description){
+
+                html +=
+                    "<p><strong>Description:</strong> " +
+                    escapeHTML(
+                        description
+                    ) +
+                    "</p>";
+
+            }
+
+
+            if(technologies){
+
+                html +=
+                    "<p><strong>Technologies:</strong> " +
+                    escapeHTML(
+                        technologies
+                    ) +
+                    "</p>";
+
+            }
+
+
+            if(duration){
+
+                html +=
+                    "<p><strong>Duration:</strong> " +
+                    escapeHTML(
+                        duration
+                    ) +
+                    "</p>";
+
+            }
+
+
+            if(role){
+
+                html +=
+                    "<p><strong>Role:</strong> " +
+                    escapeHTML(
+                        role
+                    ) +
+                    "</p>";
+
+            }
+
+
+            const projectURL =
+                safeURL(link);
+
+            if(projectURL){
+
+                html +=
+                    '<p><strong>Project Link:</strong> ' +
+                    '<a href="' +
+                    escapeHTML(projectURL) +
+                    '" target="_blank">' +
+                    escapeHTML(projectURL) +
+                    "</a></p>";
+
+            }
+
+
+            const projectGithubURL =
+                safeURL(projectGithub);
+
+            if(projectGithubURL){
+
+                html +=
+                    '<p><strong>GitHub:</strong> ' +
+                    '<a href="' +
+                    escapeHTML(
+                        projectGithubURL
+                    ) +
+                    '" target="_blank">' +
+                    escapeHTML(
+                        projectGithubURL
+                    ) +
+                    "</a></p>";
+
+            }
+
+
+            const certificateInput =
+                project.querySelector(
                     ".project-certificate"
                 );
 
 
             if(
-                projectName ||
-                description ||
-                technologies ||
-                duration ||
-                role ||
-                projectLink ||
-                projectGithub ||
-                certificate.files.length
+                certificateInput &&
+                certificateInput.files &&
+                certificateInput.files.length > 0
             ){
 
-                projectExists = true;
-
-
-                const item =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                item.className =
-                    "resume-item";
-
-
-                let html = "";
-
-
-                if(projectName){
-
-                    html +=
-                        "<h3>🚀 " +
-                        escapeHTML(projectName) +
-                        "</h3>";
-
-                }
-
-
-                if(description){
-
-                    html +=
-                        "<p><strong>Description:</strong> " +
-                        escapeHTML(description) +
-                        "</p>";
-
-                }
-
-
-                if(technologies){
-
-                    html +=
-                        "<p><strong>Technologies:</strong> " +
-                        escapeHTML(technologies) +
-                        "</p>";
-
-                }
-
-
-                if(duration){
-
-                    html +=
-                        "<p><strong>Duration:</strong> " +
-                        escapeHTML(duration) +
-                        "</p>";
-
-                }
-
-
-                if(role){
-
-                    html +=
-                        "<p><strong>Role:</strong> " +
-                        escapeHTML(role) +
-                        "</p>";
-
-                }
-
-
-                if(projectLink){
-
-                    html +=
-                        '<p><strong>Project Link:</strong> ' +
-
-                        '<a href="' +
-                        safeURL(projectLink) +
-                        '" target="_blank">' +
-
-                        escapeHTML(projectLink) +
-
-                        "</a></p>";
-
-                }
-
-
-                if(projectGithub){
-
-                    html +=
-                        '<p><strong>GitHub:</strong> ' +
-
-                        '<a href="' +
-                        safeURL(projectGithub) +
-                        '" target="_blank">' +
-
-                        escapeHTML(projectGithub) +
-
-                        "</a></p>";
-
-                }
-
-
-                item.innerHTML =
-                    html;
-
-
-                projectsPreview.appendChild(
-                    item
+                showFile(
+                    certificateInput.files[0],
+                    previewProjects
                 );
 
-
-                if(certificate.files.length){
-
-                    showFile(
-                        certificate.files[0],
-                        item,
-                        "Project Certificate"
-                    );
-
-                }
-
             }
+
+
+            html += "</div>";
+
+
+            previewProjects.innerHTML += html;
 
         }
     );
 
 
     document.getElementById(
-        "projectsPreviewSection"
+        "projectsSection"
     ).style.display =
-        projectExists
-        ? "block"
-        : "none";
+        hasProjects ? "block" : "none";
 
 
-    /* PUBLICATION */
+    /* ================================================= */
+    /* ================= PUBLICATION =================== */
+    /* ================================================= */
 
     const publicationTitle =
         document.getElementById(
             "publicationTitle"
         ).value.trim();
-
 
     const publicationDetails =
         document.getElementById(
@@ -2846,8 +2264,7 @@ function generateResume(){
 
         document.getElementById(
             "publicationSection"
-        ).style.display =
-            "block";
+        ).style.display = "block";
 
 
         document.getElementById(
@@ -2861,25 +2278,23 @@ function generateResume(){
         ).textContent =
             publicationDetails;
 
-    }
-
-    else{
+    }else{
 
         document.getElementById(
             "publicationSection"
-        ).style.display =
-            "none";
+        ).style.display = "none";
 
     }
 
 
-    /* SEMINAR */
+    /* ================================================= */
+    /* =================== SEMINARS ==================== */
+    /* ================================================= */
 
     const seminarName =
         document.getElementById(
             "seminarName"
         ).value.trim();
-
 
     const seminarDetails =
         document.getElementById(
@@ -2894,8 +2309,7 @@ function generateResume(){
 
         document.getElementById(
             "seminarSection"
-        ).style.display =
-            "block";
+        ).style.display = "block";
 
 
         document.getElementById(
@@ -2909,210 +2323,226 @@ function generateResume(){
         ).textContent =
             seminarDetails;
 
-    }
-
-    else{
+    }else{
 
         document.getElementById(
             "seminarSection"
-        ).style.display =
-            "none";
+        ).style.display = "none";
 
     }
 
 
-    /* CERTIFICATIONS */
+    /* ================================================= */
+    /* ============== CERTIFICATIONS =================== */
+    /* ================================================= */
 
-    const certificateBoxes =
+    const certificationBoxes =
         document.querySelectorAll(
-            ".certificate-box"
+            "#certificationsContainer .certificate-box"
         );
 
 
-    const certificationPreview =
+    const previewCertifications =
         document.getElementById(
-            "certificationsPreview"
+            "previewCertifications"
         );
 
 
-    certificationPreview.innerHTML = "";
+    previewCertifications.innerHTML = "";
 
 
-    let certificationExists = false;
+    let hasCertifications = false;
 
 
-    certificateBoxes.forEach(
-        function(box){
+    certificationBoxes.forEach(
+        function(certification,index){
 
-            const certName =
-                box.querySelector(
+            const name =
+                certification.querySelector(
                     ".cert-name"
                 ).value.trim();
 
-
             const organization =
-                box.querySelector(
+                certification.querySelector(
                     ".cert-organization"
                 ).value.trim();
 
-
             const date =
-                box.querySelector(
+                certification.querySelector(
                     ".cert-date"
                 ).value.trim();
 
-
-            const certId =
-                box.querySelector(
+            const id =
+                certification.querySelector(
                     ".cert-id"
                 ).value.trim();
 
-
-            const certSkills =
-                box.querySelector(
+            const skills =
+                certification.querySelector(
                     ".cert-skills"
                 ).value.trim();
 
-
             const description =
-                box.querySelector(
+                certification.querySelector(
                     ".cert-description"
                 ).value.trim();
 
-
-            const certLink =
-                box.querySelector(
+            const link =
+                certification.querySelector(
                     ".cert-link"
                 ).value.trim();
 
 
-            const certPhoto =
-                box.querySelector(
+            const photoInput =
+                certification.querySelector(
                     ".cert-photo"
                 );
 
 
             if(
-                certName ||
-                organization ||
-                date ||
-                certId ||
-                certSkills ||
-                description ||
-                certLink ||
-                certPhoto.files.length
+                !name &&
+                !organization &&
+                !date &&
+                !id &&
+                !skills &&
+                !description &&
+                !link &&
+                !(
+                    photoInput &&
+                    photoInput.files.length
+                )
             ){
 
-                certificationExists = true;
+                return;
+
+            }
 
 
-                const item =
-                    document.createElement(
-                        "div"
-                    );
+            hasCertifications = true;
 
 
-                item.className =
-                    "resume-item";
-
-
-                let html = "";
-
-
-                if(certName){
-
-                    html +=
-                        "<h3>🏆 " +
-                        escapeHTML(certName) +
-                        "</h3>";
-
-                }
-
-
-                if(organization){
-
-                    html +=
-                        "<p><strong>Organization:</strong> " +
-                        escapeHTML(organization) +
-                        "</p>";
-
-                }
-
-
-                if(date){
-
-                    html +=
-                        "<p><strong>Date / Year:</strong> " +
-                        escapeHTML(date) +
-                        "</p>";
-
-                }
-
-
-                if(certId){
-
-                    html +=
-                        "<p><strong>Certification ID:</strong> " +
-                        escapeHTML(certId) +
-                        "</p>";
-
-                }
-
-
-                if(certSkills){
-
-                    html +=
-                        "<p><strong>Skills:</strong> " +
-                        escapeHTML(certSkills) +
-                        "</p>";
-
-                }
-
-
-                if(description){
-
-                    html +=
-                        "<p><strong>Description:</strong> " +
-                        escapeHTML(description) +
-                        "</p>";
-
-                }
-
-
-                if(certLink){
-
-                    html +=
-                        '<p><strong>Certificate:</strong> ' +
-
-                        '<a href="' +
-                        safeURL(certLink) +
-                        '" target="_blank">' +
-
-                        escapeHTML(certLink) +
-
-                        "</a></p>";
-
-                }
-
-
-                item.innerHTML =
-                    html;
-
-
-                certificationPreview.appendChild(
-                    item
+            const item =
+                document.createElement(
+                    "div"
                 );
 
+            item.className =
+                "resume-item";
 
-                if(certPhoto.files.length){
 
-                    showFile(
-                        certPhoto.files[0],
-                        item,
-                        "Certificate"
-                    );
+            let html = "";
 
-                }
+
+            html +=
+                "<h3>" +
+                escapeHTML(
+                    name ||
+                    "Certification " +
+                    (index + 1)
+                ) +
+                "</h3>";
+
+
+            if(organization){
+
+                html +=
+                    "<p><strong>Issuing Organization:</strong> " +
+                    escapeHTML(
+                        organization
+                    ) +
+                    "</p>";
+
+            }
+
+
+            if(date){
+
+                html +=
+                    "<p><strong>Date / Year:</strong> " +
+                    escapeHTML(
+                        date
+                    ) +
+                    "</p>";
+
+            }
+
+
+            if(id){
+
+                html +=
+                    "<p><strong>Certification ID:</strong> " +
+                    escapeHTML(
+                        id
+                    ) +
+                    "</p>";
+
+            }
+
+
+            if(skills){
+
+                html +=
+                    "<p><strong>Skills / Topics:</strong> " +
+                    escapeHTML(
+                        skills
+                    ) +
+                    "</p>";
+
+            }
+
+
+            if(description){
+
+                html +=
+                    "<p><strong>Description:</strong> " +
+                    escapeHTML(
+                        description
+                    ) +
+                    "</p>";
+
+            }
+
+
+            const certificateURL =
+                safeURL(link);
+
+
+            if(certificateURL){
+
+                html +=
+                    '<p><strong>Certificate Link:</strong> ' +
+                    '<a href="' +
+                    escapeHTML(
+                        certificateURL
+                    ) +
+                    '" target="_blank">' +
+                    escapeHTML(
+                        certificateURL
+                    ) +
+                    "</a></p>";
+
+            }
+
+
+            item.innerHTML =
+                html;
+
+
+            previewCertifications.appendChild(
+                item
+            );
+
+
+            if(
+                photoInput &&
+                photoInput.files &&
+                photoInput.files.length > 0
+            ){
+
+                showFile(
+                    photoInput.files[0],
+                    item
+                );
 
             }
 
@@ -3121,14 +2551,16 @@ function generateResume(){
 
 
     document.getElementById(
-        "certificationPreviewSection"
+        "certificationsSection"
     ).style.display =
-        certificationExists
-        ? "block"
-        : "none";
+        hasCertifications ?
+        "block" :
+        "none";
 
 
-    /* LANGUAGES */
+    /* ================================================= */
+    /* =========== LANGUAGES & SKILLS ================== */
+    /* ================================================= */
 
     const languages =
         document.getElementById(
@@ -3136,21 +2568,49 @@ function generateResume(){
         ).value.trim();
 
 
+    const technicalSkills =
+        document.getElementById(
+            "technicalSkills"
+        ).value.trim();
+
+
     document.getElementById(
         "previewLanguages"
-    ).innerHTML =
-        createTags(languages);
+    ).textContent =
+        languages ?
+        "Languages: " +
+        languages :
+        "";
+
+
+    document.getElementById(
+        "previewTechnicalSkills"
+    ).textContent =
+        technicalSkills ?
+        "Technical Skills: " +
+        technicalSkills :
+        "";
 
 
     document.getElementById(
         "languagesSection"
     ).style.display =
-        languages
-        ? "block"
-        : "none";
+        languages ?
+        "block" :
+        "none";
 
 
-    /* HOBBIES */
+    document.getElementById(
+        "technicalSkillsSection"
+    ).style.display =
+        technicalSkills ?
+        "block" :
+        "none";
+
+
+    /* ================================================= */
+    /* ================== HOBBIES ====================== */
+    /* ================================================= */
 
     const hobbies =
         document.getElementById(
@@ -3167,12 +2627,14 @@ function generateResume(){
     document.getElementById(
         "hobbiesSection"
     ).style.display =
-        hobbies
-        ? "block"
-        : "none";
+        hobbies ?
+        "block" :
+        "none";
 
 
-    /* INTERESTS */
+    /* ================================================= */
+    /* ================= INTERESTS ===================== */
+    /* ================================================= */
 
     const interests =
         document.getElementById(
@@ -3189,77 +2651,72 @@ function generateResume(){
     document.getElementById(
         "interestsSection"
     ).style.display =
-        interests
-        ? "block"
-        : "none";
+        interests ?
+        "block" :
+        "none";
 
 
-    /* FAMILY */
+    /* ================================================= */
+    /* ================= FAMILY ======================== */
+    /* ================================================= */
 
-    const father =
+    const fatherName =
         document.getElementById(
             "fatherName"
         ).value.trim();
 
 
-    const mother =
+    const motherName =
         document.getElementById(
             "motherName"
         ).value.trim();
 
 
-    const family =
+    const familyInfo =
         document.getElementById(
             "familyInfo"
         ).value.trim();
 
 
-    if(
-        father ||
-        mother ||
-        family
-    ){
-
-        document.getElementById(
-            "familySection"
-        ).style.display =
-            "block";
+    document.getElementById(
+        "previewFather"
+    ).textContent =
+        fatherName ?
+        "Father's Name: " +
+        fatherName :
+        "";
 
 
-        document.getElementById(
-            "previewFather"
-        ).textContent =
-            father
-            ? "Father's Name: " + father
-            : "";
+    document.getElementById(
+        "previewMother"
+    ).textContent =
+        motherName ?
+        "Mother's Name: " +
+        motherName :
+        "";
 
 
-        document.getElementById(
-            "previewMother"
-        ).textContent =
-            mother
-            ? "Mother's Name: " + mother
-            : "";
+    document.getElementById(
+        "previewFamilyInfo"
+    ).textContent =
+        familyInfo;
 
 
-        document.getElementById(
-            "previewFamily"
-        ).textContent =
-            family;
-
-    }
-
-    else{
-
-        document.getElementById(
-            "familySection"
-        ).style.display =
-            "none";
-
-    }
+    document.getElementById(
+        "familySection"
+    ).style.display =
+        (
+            fatherName ||
+            motherName ||
+            familyInfo
+        ) ?
+        "block" :
+        "none";
 
 
-    /* ACHIEVEMENTS */
+    /* ================================================= */
+    /* ================= ACHIEVEMENTS ================== */
+    /* ================================================= */
 
     const achievements =
         document.getElementById(
@@ -3267,32 +2724,23 @@ function generateResume(){
         ).value.trim();
 
 
-    if(achievements){
-
-        document.getElementById(
-            "achievementsSection"
-        ).style.display =
-            "block";
+    document.getElementById(
+        "previewAchievements"
+    ).textContent =
+        achievements;
 
 
-        document.getElementById(
-            "previewAchievements"
-        ).textContent =
-            achievements;
-
-    }
-
-    else{
-
-        document.getElementById(
-            "achievementsSection"
-        ).style.display =
-            "none";
-
-    }
+    document.getElementById(
+        "achievementsSection"
+    ).style.display =
+        achievements ?
+        "block" :
+        "none";
 
 
-    /* ACTIVITIES */
+    /* ================================================= */
+    /* ================= ACTIVITIES ==================== */
+    /* ================================================= */
 
     const activities =
         document.getElementById(
@@ -3300,32 +2748,23 @@ function generateResume(){
         ).value.trim();
 
 
-    if(activities){
-
-        document.getElementById(
-            "activitiesSection"
-        ).style.display =
-            "block";
+    document.getElementById(
+        "previewActivities"
+    ).textContent =
+        activities;
 
 
-        document.getElementById(
-            "previewActivities"
-        ).textContent =
-            activities;
-
-    }
-
-    else{
-
-        document.getElementById(
-            "activitiesSection"
-        ).style.display =
-            "none";
-
-    }
+    document.getElementById(
+        "activitiesSection"
+    ).style.display =
+        activities ?
+        "block" :
+        "none";
 
 
-    /* ADDITIONAL */
+    /* ================================================= */
+    /* ================= ADDITIONAL ==================== */
+    /* ================================================= */
 
     const additional =
         document.getElementById(
@@ -3333,80 +2772,93 @@ function generateResume(){
         ).value.trim();
 
 
-    if(additional){
+    document.getElementById(
+        "previewAdditional"
+    ).textContent =
+        additional;
 
+
+    document.getElementById(
+        "additionalSection"
+    ).style.display =
+        additional ?
+        "block" :
+        "none";
+
+
+    /* ================================================= */
+    /* ========== EDUCATIONAL CERTIFICATES ============= */
+    /* ================================================= */
+
+    const educationalContainer =
         document.getElementById(
-            "additionalSection"
-        ).style.display =
-            "block";
+            "previewEducationalCertificates"
+        );
 
 
-        document.getElementById(
-            "previewAdditional"
-        ).textContent =
-            additional;
-
-    }
-
-    else{
-
-        document.getElementById(
-            "additionalSection"
-        ).style.display =
-            "none";
-
-    }
+    educationalContainer.innerHTML = "";
 
 
-    /* EDUCATIONAL CERTIFICATES */
+    let hasEducationalCertificates =
+        false;
 
-    const files = [
+
+    const educationalFiles = [
 
         {
-            id:"certificate10",
-            preview:"preview10",
-            title:"10th Certificate"
+            input:
+                document.getElementById(
+                    "certificate10"
+                ),
+
+            title:
+                "10th Certificate"
         },
 
         {
-            id:"certificate12",
-            preview:"preview12",
-            title:"12th Certificate"
+            input:
+                document.getElementById(
+                    "certificate12"
+                ),
+
+            title:
+                "12th Certificate"
         },
 
         {
-            id:"degreeCertificate",
-            preview:"previewDegree",
-            title:"Degree Certificate"
+            input:
+                document.getElementById(
+                    "degreeCertificate"
+                ),
+
+            title:
+                "Degree Certificate"
         }
 
     ];
 
 
-    let educationalExists = false;
-
-
-    files.forEach(
+    educationalFiles.forEach(
         function(item){
 
-            const input =
-                document.getElementById(
-                    item.id
-                );
+            if(
+                item.input &&
+                item.input.files &&
+                item.input.files.length > 0
+            ){
+
+                hasEducationalCertificates =
+                    true;
 
 
-            const preview =
-                document.getElementById(
-                    item.preview
-                );
+                const box =
+                    document.createElement(
+                        "div"
+                    );
 
 
-            preview.innerHTML = "";
-
-
-            if(input.files.length){
-
-                educationalExists = true;
+                box.className =
+                    "resume-item";
 
 
                 const heading =
@@ -3419,15 +2871,18 @@ function generateResume(){
                     item.title;
 
 
-                preview.appendChild(
+                box.appendChild(
                     heading
                 );
 
 
+                educationalContainer
+                    .appendChild(box);
+
+
                 showFile(
-                    input.files[0],
-                    preview,
-                    item.title
+                    item.input.files[0],
+                    box
                 );
 
             }
@@ -3439,12 +2894,14 @@ function generateResume(){
     document.getElementById(
         "educationalCertificatesSection"
     ).style.display =
-        educationalExists
-        ? "block"
-        : "none";
+        hasEducationalCertificates ?
+        "block" :
+        "none";
 
 
-    /* SHOW RESUME */
+    /* ================================================= */
+    /* ================= SHOW RESUME =================== */
+    /* ================================================= */
 
     const resume =
         document.getElementById(
@@ -3456,61 +2913,55 @@ function generateResume(){
         "block";
 
 
-    setTimeout(
-        function(){
-
-            resume.scrollIntoView({
-                behavior:"smooth"
-            });
-
-        },
-        150
-    );
+    resume.scrollIntoView({
+        behavior:"smooth"
+    });
 
 }
 
 
-/* =========================
-   SHOW FILE
-========================= */
+/* ===================================================== */
+/* ================= SHOW FILE ========================= */
+/* ===================================================== */
 
-function showFile(
-    file,
-    container,
-    title
-){
+function showFile(file, container){
 
-    if(
-        file.type.startsWith("image/")
-    ){
+    if(!file){
+
+        return;
+
+    }
+
+
+    if(file.type.startsWith("image/")){
 
         const reader =
             new FileReader();
 
 
         reader.onload =
-            function(e){
+            function(event){
 
-                const img =
+                const image =
                     document.createElement(
                         "img"
                     );
 
 
-                img.src =
-                    e.target.result;
+                image.src =
+                    event.target.result;
 
 
-                img.className =
+                image.className =
                     "certificate-preview";
 
 
-                img.alt =
-                    title;
+                image.alt =
+                    "Certificate";
 
 
                 container.appendChild(
-                    img
+                    image
                 );
 
             };
@@ -3520,39 +2971,69 @@ function showFile(
 
     }
 
+
     else if(
-        file.type === "application/pdf"
+        file.type ===
+        "application/pdf"
     ){
 
-        const box =
-            document.createElement(
-                "div"
-            );
+        const reader =
+            new FileReader();
 
 
-        box.className =
-            "pdf-box";
+        reader.onload =
+            function(event){
+
+                const box =
+                    document.createElement(
+                        "div"
+                    );
 
 
-        box.textContent =
-            "📄 " +
-            title +
-            ": " +
-            file.name;
+                box.className =
+                    "pdf-box";
 
 
-        container.appendChild(
-            box
-        );
+                const link =
+                    document.createElement(
+                        "a"
+                    );
+
+
+                link.href =
+                    event.target.result;
+
+
+                link.target =
+                    "_blank";
+
+
+                link.textContent =
+                    "View Certificate PDF";
+
+
+                box.appendChild(
+                    link
+                );
+
+
+                container.appendChild(
+                    box
+                );
+
+            };
+
+
+        reader.readAsDataURL(file);
 
     }
 
 }
 
 
-/* =========================
-   PRINT / SAVE PDF
-========================= */
+/* ===================================================== */
+/* ================= PRINT RESUME ====================== */
+/* ===================================================== */
 
 function printResume(){
 
@@ -3563,11 +3044,12 @@ function printResume(){
 
 
     if(
-        resume.style.display === "none"
+        resume.style.display === "none" ||
+        !resume.innerHTML.trim()
     ){
 
         alert(
-            "Please click Generate Resume first."
+            "Please generate the resume first."
         );
 
         return;
